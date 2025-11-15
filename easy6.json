@@ -1,0 +1,716 @@
+﻿{
+    "phrases":  [
+                    {
+                        "english":  "Please close the door.",
+                        "hindi":  "दरवाजा बंद कर दीजिए।"
+                    },
+                    {
+                        "english":  "They gave their suggestions in the meeting.",
+                        "hindi":  "उन्होंने मीटिंग में अपने सुझाव दिए।"
+                    },
+                    {
+                        "english":  "He is relaxing on the couch.",
+                        "hindi":  "वह सोफे पर आराम कर रहा है।"
+                    },
+                    {
+                        "english":  "Is there any shop nearby?",
+                        "hindi":  "यहाँ पास में कोई दुकान है?"
+                    },
+                    {
+                        "english":  "He gave an inspiring speech to his team.",
+                        "hindi":  "उसने अपनी टीम के लिए एक प्रेरणादायक भाषण दिया।"
+                    },
+                    {
+                        "english":  "I liked this idea",
+                        "hindi":  "यह विचार मुझे अच्छा लगा"
+                    },
+                    {
+                        "english":  "How majestic!",
+                        "hindi":  "कितना भव्य है!"
+                    },
+                    {
+                        "english":  "He broke my stuff.",
+                        "hindi":  "उसने मेरा सामान तोड़ दिया।"
+                    },
+                    {
+                        "english":  "Oh my gosh!",
+                        "hindi":  "ओह मेरे भगवान!"
+                    },
+                    {
+                        "english":  "I sometimes sing songs.",
+                        "hindi":  "मैं कभी-कभी गाने गाता हूँ।"
+                    },
+                    {
+                        "english":  "I asked him to read an inspiring book.",
+                        "hindi":  "मैंने उसे एक प्रेरणादायक किताब पढ़ने को कहा।"
+                    },
+                    {
+                        "english":  "This is a comfortable chair.",
+                        "hindi":  "यह एक आरामदायक कुर्सी है।"
+                    },
+                    {
+                        "english":  "Did you understand this topic?",
+                        "hindi":  "क्या तुम्हें इस विषय पर समझ आया?"
+                    },
+                    {
+                        "english":  "When it rained we went inside.",
+                        "hindi":  "जब बारिश हुई तो हम अंदर चले गए।"
+                    },
+                    {
+                        "english":  "Follow the instructions.",
+                        "hindi":  "निर्देशों का पालन करो।"
+                    },
+                    {
+                        "english":  "Have you achieved your goals?",
+                        "hindi":  "क्या तुमने अपने लक्ष्य पूरे कर लिए हैं?"
+                    },
+                    {
+                        "english":  "Move forward.",
+                        "hindi":  "आगे बढ़ो।"
+                    },
+                    {
+                        "english":  "Listen carefully.",
+                        "hindi":  "ध्यान से सुनो।"
+                    },
+                    {
+                        "english":  "Is this story true?",
+                        "hindi":  "क्या यह कहानी सच है?"
+                    },
+                    {
+                        "english":  "We visit a new place every year.",
+                        "hindi":  "हम हर साल एक नई जगह की यात्रा करते हैं।"
+                    },
+                    {
+                        "english":  "Its good.",
+                        "hindi":  "यह अच्छा है।"
+                    },
+                    {
+                        "english":  "He works hard every day.",
+                        "hindi":  "वह हर दिन कड़ी मेहनत करता है।"
+                    },
+                    {
+                        "english":  "How do you start the car?",
+                        "hindi":  "आप कार कैसे स्टार्ट करते हैं?"
+                    },
+                    {
+                        "english":  "Good idea.",
+                        "hindi":  "अच्छा विचार है।"
+                    },
+                    {
+                        "english":  "What a masterpiece!",
+                        "hindi":  "क्या उत्कृष्ट रचना है!"
+                    },
+                    {
+                        "english":  "They are having dinner.",
+                        "hindi":  "वे रात का खाना खा रहे हैं।"
+                    },
+                    {
+                        "english":  "Sit down and relax.",
+                        "hindi":  "बैठो और आराम करो।"
+                    },
+                    {
+                        "english":  "The flowers are blooming.",
+                        "hindi":  "फूल खिल रहे हैं।"
+                    },
+                    {
+                        "english":  "She taught me how to become a good person.",
+                        "hindi":  "उसने मुझे सिखाया कि कैसे एक अच्छा इंसान बनें।"
+                    },
+                    {
+                        "english":  "Follow the signs.",
+                        "hindi":  "संकेतों का पालन करो।"
+                    },
+                    {
+                        "english":  "Did you watch this movie?",
+                        "hindi":  "क्या तुमने यह फिल्म देखी?"
+                    },
+                    {
+                        "english":  "He shared his problem with his teacher.",
+                        "hindi":  "उसने अपने शिक्षक से अपनी समस्या साझा की।"
+                    },
+                    {
+                        "english":  "He plays the guitar.",
+                        "hindi":  "वह गिटार बजाता है।"
+                    },
+                    {
+                        "english":  "Is this your final decision?",
+                        "hindi":  "क्या यह तुम्हारा अंतिम निर्णय है?"
+                    },
+                    {
+                        "english":  "I meditate every morning.",
+                        "hindi":  "मैं हर सुबह ध्यान करता हूँ।"
+                    },
+                    {
+                        "english":  "The weather is very hot today.",
+                        "hindi":  "आज मौसम बहुत गर्म है।"
+                    },
+                    {
+                        "english":  "Let us discuss this issue",
+                        "hindi":  "चलिए इस मुद्दे पर चर्चा करते हैं"
+                    },
+                    {
+                        "english":  "The cake is delicious.",
+                        "hindi":  "केक स्वादिष्ट है।"
+                    },
+                    {
+                        "english":  "Please fix it.",
+                        "hindi":  "इसे ठीक कर दीजिए।"
+                    },
+                    {
+                        "english":  "He called me to run with him.",
+                        "hindi":  "उसने मुझे अपने साथ दौड़ने के लिए बुलाया।"
+                    },
+                    {
+                        "english":  "The water is in the fridge.",
+                        "hindi":  "पानी फ्रिज में है।"
+                    },
+                    {
+                        "english":  "Why is this important?",
+                        "hindi":  "यह क्यों महत्वपूर्ण है?"
+                    },
+                    {
+                        "english":  "What is your problem.",
+                        "hindi":  "आपकी समस्या क्या है।"
+                    },
+                    {
+                        "english":  "More information should be collected on this",
+                        "hindi":  "इस पर और जानकारी एकत्र की जानी चाहिए"
+                    },
+                    {
+                        "english":  "Is this road safe?",
+                        "hindi":  "क्या यह रास्ता सुरक्षित है?"
+                    },
+                    {
+                        "english":  "Leave me.",
+                        "hindi":  "छोड़ो मुझे।"
+                    },
+                    {
+                        "english":  "Can you give me your address?",
+                        "hindi":  "क्या तुम मुझे अपना पता बता सकते हो?"
+                    },
+                    {
+                        "english":  "Please help quickly",
+                        "hindi":  "कृपया जल्दी मदद करें"
+                    },
+                    {
+                        "english":  "He completed preparing for his exam.",
+                        "hindi":  "उसने अपनी परीक्षा की तैयारी पूरी कर ली।"
+                    },
+                    {
+                        "english":  "Did you find your bag?",
+                        "hindi":  "क्या तुमने अपना बैग खोज लिया?"
+                    },
+                    {
+                        "english":  "Calm down.",
+                        "hindi":  "शांत हो जाओ।"
+                    },
+                    {
+                        "english":  "This place is very beautiful.",
+                        "hindi":  "यह जगह बहुत खूबसूरत है।"
+                    },
+                    {
+                        "english":  "We will go to the mountains next month.",
+                        "hindi":  "हम अगले महीने पहाड़ों पर जाएँगे।"
+                    },
+                    {
+                        "english":  "Would you like to work on this?",
+                        "hindi":  "क्या आप इस पर काम करना चाहेंगे?"
+                    },
+                    {
+                        "english":  "We should make proper use of our time.",
+                        "hindi":  "हमें अपने समय का सही उपयोग करना चाहिए।"
+                    },
+                    {
+                        "english":  "She has two brothers.",
+                        "hindi":  "उसके दो भाई हैं।"
+                    },
+                    {
+                        "english":  "Can you express your opinion?",
+                        "hindi":  "क्या आप अपनी राय व्यक्त कर सकते हैं?"
+                    },
+                    {
+                        "english":  "Can you tell us the way to go there?",
+                        "hindi":  "क्या आप हमें वहाँ जाने का रास्ता बता सकते हैं?"
+                    },
+                    {
+                        "english":  "He taught me an important lesson.",
+                        "hindi":  "उसने मुझे एक महत्वपूर्ण सबक सिखाया।"
+                    },
+                    {
+                        "english":  "Can you help me pick up this item?",
+                        "hindi":  "क्या आप मुझे यह सामान उठा कर दे सकते हैं?"
+                    },
+                    {
+                        "english":  "How do you go to school?",
+                        "hindi":  "आप स्कूल कैसे जाते हैं?"
+                    },
+                    {
+                        "english":  "I know this is difficult for you.",
+                        "hindi":  "मुझे पता है कि यह तुम्हारे लिए मुश्किल है।"
+                    },
+                    {
+                        "english":  "We should review this again",
+                        "hindi":  "हमें इसे फिर से जांचना चाहिए"
+                    },
+                    {
+                        "english":  "Do you know who this is?",
+                        "hindi":  "क्या तुम्हें पता है यह कौन है?"
+                    },
+                    {
+                        "english":  "This is my favorite movie.",
+                        "hindi":  "यह मेरी पसंदीदा फिल्म है।"
+                    },
+                    {
+                        "english":  "We should take a decision on this issue soon.",
+                        "hindi":  "हमें इस मुद्दे पर जल्द ही निर्णय लेना चाहिए।"
+                    },
+                    {
+                        "english":  "We should keep our house clean and organized.",
+                        "hindi":  "हमें अपने घर को साफ और व्यवस्थित रखना चाहिए।"
+                    },
+                    {
+                        "english":  "Mind your manners.",
+                        "hindi":  "अपने शिष्टाचार का ध्यान रखो।"
+                    },
+                    {
+                        "english":  "Take care of yourself.",
+                        "hindi":  "अपना ख्याल रखना।"
+                    },
+                    {
+                        "english":  "Can you give me a summary of this book?",
+                        "hindi":  "क्या तुम मुझे इस किताब का सारांश दे सकते हो?"
+                    },
+                    {
+                        "english":  "Watch the movie.",
+                        "hindi":  "फिल्म देखो।"
+                    },
+                    {
+                        "english":  "We had a picnic by the riverside.",
+                        "hindi":  "हमने नदी के किनारे पिकनिक मनाई।"
+                    },
+                    {
+                        "english":  "Did you watch her presentation?",
+                        "hindi":  "क्या तुमने उसकी प्रस्तुति देखी?"
+                    },
+                    {
+                        "english":  "Have you fulfilled your responsibilities?",
+                        "hindi":  "क्या तुमने अपनी जिम्मेदारियाँ पूरी की हैं?"
+                    },
+                    {
+                        "english":  "Who is he?",
+                        "hindi":  "वह कौन है?"
+                    },
+                    {
+                        "english":  "What a score!",
+                        "hindi":  "क्या स्कोर है!"
+                    },
+                    {
+                        "english":  "Can you tell me the answer to this?",
+                        "hindi":  "क्या आप मुझे इसका उत्तर बता सकते हैं?"
+                    },
+                    {
+                        "english":  "I have heard this story somewhere before.",
+                        "hindi":  "मैंने यह कहानी पहले कहीं सुनी है।"
+                    },
+                    {
+                        "english":  "I forgave him.",
+                        "hindi":  "मैंने उसे माफ कर दिया।"
+                    },
+                    {
+                        "english":  "They were running very fast.",
+                        "hindi":  "वे बहुत तेज दौड़ रहे थे।"
+                    },
+                    {
+                        "english":  "How enlightening!",
+                        "hindi":  "कितना ज्ञानवर्धक है!"
+                    },
+                    {
+                        "english":  "I want to buy vegetables.",
+                        "hindi":  "मैं सब्जियां खरीदना चाहता हूँ।"
+                    },
+                    {
+                        "english":  "When is your birthday?",
+                        "hindi":  "आपका जन्मदिन कब है?"
+                    },
+                    {
+                        "english":  "I should consider your suggestion.",
+                        "hindi":  "मुझे तुम्हारे सुझाव पर विचार करना चाहिए।"
+                    },
+                    {
+                        "english":  "Did you buy this car?",
+                        "hindi":  "क्या तुमने यह गाड़ी खरीदी है?"
+                    },
+                    {
+                        "english":  "The weather is nice today.",
+                        "hindi":  "आज मौसम अच्छा है।"
+                    },
+                    {
+                        "english":  "They went to the park yesterday.",
+                        "hindi":  "वे कल पार्क गए थे।"
+                    },
+                    {
+                        "english":  "What a journey!",
+                        "hindi":  "क्या यात्रा है!"
+                    },
+                    {
+                        "english":  "He always helps his mother.",
+                        "hindi":  "वह हमेशा अपनी माँ की मदद करता है।"
+                    },
+                    {
+                        "english":  "I can change my decision.",
+                        "hindi":  "मैं अपना निर्णय बदल सकता हूँ।"
+                    },
+                    {
+                        "english":  "What a revelation!",
+                        "hindi":  "क्या रहस्योद्घाटन है!"
+                    },
+                    {
+                        "english":  "I put my watch somewhere and forgot.",
+                        "hindi":  "मैंने अपनी घड़ी कहीं रख दी और भूल गया।"
+                    },
+                    {
+                        "english":  "Set the table.",
+                        "hindi":  "मेज लगाओ।"
+                    },
+                    {
+                        "english":  "They are very good at their game.",
+                        "hindi":  "वे अपने खेल में बहुत अच्छे हैं।"
+                    },
+                    {
+                        "english":  "Do it again.",
+                        "hindi":  "इसे फिर से करो।"
+                    },
+                    {
+                        "english":  "She told me about her favorite book.",
+                        "hindi":  "उसने मुझे अपनी पसंदीदा किताब के बारे में बताया।"
+                    },
+                    {
+                        "english":  "Whose bag is this?",
+                        "hindi":  "यह किसका बैग है?"
+                    },
+                    {
+                        "english":  "He was running to catch the bus.",
+                        "hindi":  "वह बस पकड़ने के लिए भाग रहा था।"
+                    },
+                    {
+                        "english":  "Did you hear this news?",
+                        "hindi":  "क्या तुमने यह खबर सुनी?"
+                    },
+                    {
+                        "english":  "He studied the whole night.",
+                        "hindi":  "उसने पूरी रात पढ़ाई की।"
+                    },
+                    {
+                        "english":  "Open the book.",
+                        "hindi":  "किताब खोलो।"
+                    },
+                    {
+                        "english":  "Write an essay.",
+                        "hindi":  "निबंध लिखो।"
+                    },
+                    {
+                        "english":  "When did you buy this?",
+                        "hindi":  "आपने इसे कब खरीदा?"
+                    },
+                    {
+                        "english":  "He tried to teach me a new language.",
+                        "hindi":  "उसने मुझे एक नई भाषा सिखाने का प्रयास किया।"
+                    },
+                    {
+                        "english":  "We need to do this work properly.",
+                        "hindi":  "हमें इस काम को ठीक से करने की जरूरत है।"
+                    },
+                    {
+                        "english":  "She sought guidance from her mentor.",
+                        "hindi":  "उसने अपने गुरु से मार्गदर्शन लिया।"
+                    },
+                    {
+                        "english":  "I will submit my project tomorrow.",
+                        "hindi":  "मैं कल अपना प्रोजेक्ट जमा करूंगा।"
+                    },
+                    {
+                        "english":  "I was sleeping when you came.",
+                        "hindi":  "जब तुम आए मैं सो रहा था।"
+                    },
+                    {
+                        "english":  "Did he arrive on time?",
+                        "hindi":  "क्या वह समय पर पहुँचा?"
+                    },
+                    {
+                        "english":  "I always go to the office on time.",
+                        "hindi":  "मैं हमेशा समय पर ऑफिस जाता हूँ।"
+                    },
+                    {
+                        "english":  "Have you ever studied this topic?",
+                        "hindi":  "क्या तुमने कभी इस विषय पर पढ़ा है?"
+                    },
+                    {
+                        "english":  "I encouraged him for his efforts.",
+                        "hindi":  "मैंने उसे उसके प्रयासों के लिए प्रेरित किया।"
+                    },
+                    {
+                        "english":  "I helped my friend with his problems.",
+                        "hindi":  "मैंने अपने दोस्त को उसकी समस्याओं में मदद की।"
+                    },
+                    {
+                        "english":  "She made a beautiful painting.",
+                        "hindi":  "उसने एक सुंदर पेंटिंग बनाई।"
+                    },
+                    {
+                        "english":  "Can you explain this topic in detail?",
+                        "hindi":  "क्या आप इस विषय को विस्तार से समझा सकते हैं?"
+                    },
+                    {
+                        "english":  "What can be done to make this better?",
+                        "hindi":  "इसे और बेहतर बनाने के लिए क्या किया जा सकता है?"
+                    },
+                    {
+                        "english":  "What time is it now?",
+                        "hindi":  "अभी क्या समय हुआ है?"
+                    },
+                    {
+                        "english":  "Can you tell me the meaning of this?",
+                        "hindi":  "क्या आप मुझे इसका अर्थ बता सकते हैं?"
+                    },
+                    {
+                        "english":  "They have completed their homework",
+                        "hindi":  "उन्होंने अपना होमवर्क पूरा कर लिया"
+                    },
+                    {
+                        "english":  "You are lying.",
+                        "hindi":  "तुम झूठ बोल रहे हो।"
+                    },
+                    {
+                        "english":  "I am playing the piano.",
+                        "hindi":  "मैं पियानो बजा रहा हूँ।"
+                    },
+                    {
+                        "english":  "They expressed their thoughts to us.",
+                        "hindi":  "उन्होंने हमें अपने विचार प्रकट किए।"
+                    },
+                    {
+                        "english":  "She gave her sister a surprise on her birthday.",
+                        "hindi":  "उसने अपनी बहन को उसके जन्मदिन पर एक सरप्राइज दिया।"
+                    },
+                    {
+                        "english":  "She can run very fast.",
+                        "hindi":  "वह बहुत तेज दौड़ सकती है।"
+                    },
+                    {
+                        "english":  "She is painting a picture.",
+                        "hindi":  "वह एक चित्र बना रही है।"
+                    },
+                    {
+                        "english":  "I replied to him through email.",
+                        "hindi":  "मैंने उसे ईमेल के जरिए जवाब दिया।"
+                    },
+                    {
+                        "english":  "When will this information be available?",
+                        "hindi":  "यह जानकारी कब तक उपलब्ध होगी?"
+                    },
+                    {
+                        "english":  "How complex is this process?",
+                        "hindi":  "यह प्रक्रिया कितनी जटिल है?"
+                    },
+                    {
+                        "english":  "I need your opinion",
+                        "hindi":  "मुझे आपकी राय चाहिए"
+                    },
+                    {
+                        "english":  "He told me about his experiences.",
+                        "hindi":  "उसने मुझे अपने अनुभवों के बारे में बताया।"
+                    },
+                    {
+                        "english":  "I am reading a novel.",
+                        "hindi":  "मैं एक उपन्यास पढ़ रहा हूँ।"
+                    },
+                    {
+                        "english":  "This is very delicious",
+                        "hindi":  "यह बहुत स्वादिष्ट है"
+                    },
+                    {
+                        "english":  "We need your feedback on this",
+                        "hindi":  "हमें इस पर आपकी प्रतिक्रिया चाहिए"
+                    },
+                    {
+                        "english":  "We should prioritize this problem.",
+                        "hindi":  "हमें इस समस्या को प्राथमिकता देनी चाहिए।"
+                    },
+                    {
+                        "english":  "I practice singing every evening.",
+                        "hindi":  "मैं हर शाम गाना गाने की प्रैक्टिस करता हूँ।"
+                    },
+                    {
+                        "english":  "Check your email.",
+                        "hindi":  "अपना ईमेल चेक करो।"
+                    },
+                    {
+                        "english":  "Be honest.",
+                        "hindi":  "ईमानदार रहो।"
+                    },
+                    {
+                        "english":  "Did you listen to what I said?",
+                        "hindi":  "क्या तुमने मेरी बात सुनी?"
+                    },
+                    {
+                        "english":  "She obeyed her parents.",
+                        "hindi":  "उसने अपने माता-पिता की आज्ञा मानी।"
+                    },
+                    {
+                        "english":  "We did this work together.",
+                        "hindi":  "हमने एक साथ मिलकर यह काम किया।"
+                    },
+                    {
+                        "english":  "Why did you call me?",
+                        "hindi":  "आपने मुझे क्यों बुलाया?"
+                    },
+                    {
+                        "english":  "I will arrive early.",
+                        "hindi":  "मैं जल्दी पहुँच जाऊँगा।"
+                    },
+                    {
+                        "english":  "How peaceful!",
+                        "hindi":  "कितना शांति पूर्ण है!"
+                    },
+                    {
+                        "english":  "Write a letter.",
+                        "hindi":  "एक पत्र लिखो।"
+                    },
+                    {
+                        "english":  "What do you like to eat?",
+                        "hindi":  "आपको क्या खाना पसंद है?"
+                    },
+                    {
+                        "english":  "Can you forgive me?",
+                        "hindi":  "क्या आप मुझे माफ कर सकते हैं?"
+                    },
+                    {
+                        "english":  "I was driving when you called.",
+                        "hindi":  "मैं गाड़ी चला रहा था जब तुमने कॉल किया।"
+                    },
+                    {
+                        "english":  "He thanked me.",
+                        "hindi":  "उसने मुझे उसका धन्यवाद किया।"
+                    },
+                    {
+                        "english":  "I like this car very much.",
+                        "hindi":  "मुझे यह गाड़ी बहुत पसंद है।"
+                    },
+                    {
+                        "english":  "I answered his questions.",
+                        "hindi":  "मैंने उसके सवालों का जवाब दिया।"
+                    },
+                    {
+                        "english":  "Have you ever traveled to the Himalayas?",
+                        "hindi":  "क्या तुमने कभी हिमालय की यात्रा की है?"
+                    },
+                    {
+                        "english":  "We should collect all the information",
+                        "hindi":  "हमें सभी जानकारी एकत्र करनी चाहिए"
+                    },
+                    {
+                        "english":  "Speak softly.",
+                        "hindi":  "धीरे बोलो।"
+                    },
+                    {
+                        "english":  "They will come here tomorrow.",
+                        "hindi":  "वे कल यहाँ आएँगे।"
+                    },
+                    {
+                        "english":  "He gave me important information.",
+                        "hindi":  "उसने मुझे एक महत्वपूर्ण सूचना दी।"
+                    },
+                    {
+                        "english":  "What do you want to buy?",
+                        "hindi":  "आप क्या खरीदना चाहते हैं?"
+                    },
+                    {
+                        "english":  "When does the train arrive?",
+                        "hindi":  "ट्रेन कब आती है?"
+                    },
+                    {
+                        "english":  "Who is your best friend?",
+                        "hindi":  "आपका सबसे अच्छा दोस्त कौन है?"
+                    },
+                    {
+                        "english":  "Did you talk to your friends?",
+                        "hindi":  "क्या तुमने अपने दोस्तों के साथ बात की?"
+                    },
+                    {
+                        "english":  "I am confident that she will win.",
+                        "hindi":  "मुझे यकीन है कि वह जीत जाएगी।"
+                    },
+                    {
+                        "english":  "Have you started working on this problem?",
+                        "hindi":  "क्या तुमने इस समस्या पर काम शुरू किया है?"
+                    },
+                    {
+                        "english":  "I was going to market.",
+                        "hindi":  "मैं बाजार जा रहा था।"
+                    },
+                    {
+                        "english":  "I tried to understand my problem.",
+                        "hindi":  "मैंने अपनी समस्या को समझने की कोशिश की।"
+                    },
+                    {
+                        "english":  "We will be late to reach there.",
+                        "hindi":  "हम वहाँ पहुँचने में देर कर देंगे।"
+                    },
+                    {
+                        "english":  "Do you find this work interesting?",
+                        "hindi":  "क्या यह काम तुम्हें दिलचस्प लगता है?"
+                    },
+                    {
+                        "english":  "What is your address?",
+                        "hindi":  "आपका पता क्या है?"
+                    },
+                    {
+                        "english":  "What a game!",
+                        "hindi":  "क्या खेल है!"
+                    },
+                    {
+                        "english":  "Don\u0027t be late.",
+                        "hindi":  "देर मत करना।"
+                    },
+                    {
+                        "english":  "What is your email address?",
+                        "hindi":  "आपका ईमेल पता क्या है?"
+                    },
+                    {
+                        "english":  "They will return by evening.",
+                        "hindi":  "वे शाम तक वापस आ जाएँगे।"
+                    },
+                    {
+                        "english":  "What an adventure!",
+                        "hindi":  "क्या रोमांच है!"
+                    },
+                    {
+                        "english":  "Oh no I forgot!",
+                        "hindi":  "ओह नहीं मैं भूल गया!"
+                    },
+                    {
+                        "english":  "What a find!",
+                        "hindi":  "क्या खोज है!"
+                    },
+                    {
+                        "english":  "He gave me a good suggestion.",
+                        "hindi":  "उसने मुझे एक अच्छा सुझाव दिया।"
+                    },
+                    {
+                        "english":  "When it rains I drink tea.",
+                        "hindi":  "जब बारिश होती है तो मैं चाय पीता हूँ।"
+                    },
+                    {
+                        "english":  "When do you play.",
+                        "hindi":  "तुम कब खेलते हो?"
+                    },
+                    {
+                        "english":  "She plugged in her phone to charge it.",
+                        "hindi":  "उसने अपना फोन चार्ज करने के लिए प्लग में लगाया।"
+                    },
+                    {
+                        "english":  "May I sit here?",
+                        "hindi":  "क्या मुझे यहां बैठने की अनुमति है?"
+                    }
+                ]
+}

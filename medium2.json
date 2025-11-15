@@ -1,0 +1,224 @@
+{
+  "categories": [
+    {
+      "name": "Technology & Internet",
+      "phrases": [
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप इंटरनेट का उपयोग करते हैं?",
+          "english": "Yes, I use it every day for work and entertainment."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपका पसंदीदा ऐप कौन सा है?",
+          "english": "I really like music streaming apps."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप सोशल मीडिया पर सक्रिय हैं?",
+          "english": "Yes, but I try not to spend too much time on it."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपका फोन कौन सा है?",
+          "english": "I have an Android phone."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप ऑनलाइन शॉपिंग करते हैं?",
+          "english": "Yes, it's very convenient."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आप कितनी बार अपना फोन चेक करते हैं?",
+          "english": "Probably too often! I'm trying to reduce it."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आपको वीडियो गेम पसंद हैं?",
+          "english": "Yes, I play them occasionally to relax."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आप ऑनलाइन क्या देखते हैं?",
+          "english": "Mostly educational videos and movies."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आपके पास लैपटॉप है?",
+          "english": "Yes, I use it for work every day."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप ऑनलाइन कोर्स करते हैं?",
+          "english": "Yes, I'm learning web development online."
+        }
+      ]
+    },
+    {
+      "name": "Hobbies & Interests",
+      "phrases": [
+        {
+          "type": "qa-hindi",
+          "hindi": "आपकी पसंदीदा हॉबी क्या है?",
+          "english": "I love photography and capturing moments."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप कोई वाद्य यंत्र बजाते हैं?",
+          "english": "I'm learning to play the guitar."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको किस तरह की किताबें पसंद हैं?",
+          "english": "I enjoy mystery and thriller novels."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप पेंटिंग करते हैं?",
+          "english": "Sometimes, when I have free time."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको कौन सा खेल पसंद है?",
+          "english": "I love playing cricket and badminton."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप डांस करते हैं?",
+          "english": "Yes, I enjoy dancing at parties!"
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आप खाली समय में क्या करते हैं?",
+          "english": "I usually watch movies or go for walks."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आपको बागवानी पसंद है?",
+          "english": "Yes, I have a small garden at home."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको कौन सी फिल्में पसंद हैं?",
+          "english": "I prefer action and comedy films."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप कविता लिखते हैं?",
+          "english": "Occasionally, when I'm feeling inspired."
+        }
+      ]
+    },
+    {
+      "name": "Education & Learning",
+      "phrases": [
+        {
+          "type": "qa-hindi",
+          "hindi": "आपने कहाँ पढ़ाई की?",
+          "english": "I studied at Delhi University."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपका पसंदीदा विषय क्या था?",
+          "english": "I really enjoyed studying history."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप कोई नई भाषा सीख रहे हैं?",
+          "english": "Yes, I'm learning French online."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको पढ़ना पसंद है?",
+          "english": "Yes, I read at least one book a month."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप कोई कोर्स कर रहे हैं?",
+          "english": "Yes, I'm taking a digital marketing course."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपका सबसे अच्छा शिक्षक कौन था?",
+          "english": "My English teacher in high school was amazing."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आपको गणित पसंद है?",
+          "english": "Not really, but I understand its importance."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आप कैसे सीखना पसंद करते हैं?",
+          "english": "I prefer hands-on practice over theory."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप लाइब्रेरी जाते हैं?",
+          "english": "Yes, I go there to study and read."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपकी पढ़ाई कैसी चल रही है?",
+          "english": "It's going well, though it's challenging."
+        }
+      ]
+    },
+    {
+      "name": "Entertainment & Movies",
+      "phrases": [
+        {
+          "type": "qa-hindi",
+          "hindi": "आपकी पसंदीदा फिल्म कौन सी है?",
+          "english": "I love 'The Shawshank Redemption'."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप थिएटर जाते हैं?",
+          "english": "Yes, I enjoy watching movies on the big screen."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको कौन सा अभिनेता पसंद है?",
+          "english": "I'm a big fan of Shah Rukh Khan."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप वेब सीरीज देखते हैं?",
+          "english": "Yes, I'm currently watching a thriller series."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपको कॉमेडी पसंद है?",
+          "english": "Absolutely! Laughter is the best medicine."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आपने हाल में कोई अच्छी फिल्म देखी?",
+          "english": "Yes, I watched a great documentary last week."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आप किस तरह का संगीत सुनते हैं?",
+          "english": "I listen to all kinds, but I prefer pop and rock."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप कॉन्सर्ट में जाते हैं?",
+          "english": "Yes, whenever my favorite artists perform."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "आपका पसंदीदा गाना कौन सा है?",
+          "english": "I have many, but I love 'Imagine' by John Lennon."
+        },
+        {
+          "type": "qa-hindi",
+          "hindi": "क्या आप पॉडकास्ट सुनते हैं?",
+          "english": "Yes, especially while commuting."
+        }
+      ]
+    }
+  ]
+}

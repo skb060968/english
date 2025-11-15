@@ -1,0 +1,816 @@
+/* =========================
+   Learn English - Enhanced PWA Style
+   ========================= */
+
+/* 🎨 Color Variables */
+:root {
+  --primary: #0078D4;
+  --primary-hover: #005fa3;
+  --secondary: #E8F5E9;
+  --text-dark: #1a1a1a;
+  --text-light: #fff;
+  --accent: #FF6B6B;
+  --accent-hover: #ee5a52;
+  --bg-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-dark: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  --card-light: linear-gradient(135deg, #e8eaff 0%, #f0f2ff 100%);
+  --card-dark: rgba(30, 30, 30, 0.95);
+  --shadow-light: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 15px 50px rgba(0, 0, 0, 0.2);
+  --progress-width: 0%;
+}
+
+/* 🌈 Base Layout */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--text-dark);
+  transition: background 0.5s ease, color 0.3s ease;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: 0;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* 🌗 Theme Toggle */
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+#theme-icon {
+  font-size: 1.8em;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#theme-icon:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(180deg) scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 🚀 Splash Screen */
+#splash-screen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-light);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  z-index: 999;
+  text-align: center;
+}
+
+#splash-screen > div:first-child {
+  animation: bounceIn 1s ease-out;
+}
+
+#splash-screen h1 {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+#splash-screen p {
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+body.dark #splash-screen {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+/* 💫 Animations */
+@keyframes rotateOut {
+  0% { opacity: 1; transform: rotateY(0deg); }
+  100% { opacity: 0; transform: rotateY(90deg); }
+}
+@keyframes rotateIn {
+  0% { opacity: 0; transform: rotateY(-90deg); }
+  100% { opacity: 1; transform: rotateY(0deg); }
+}
+.rotate-out { animation: rotateOut 0.6s ease forwards; }
+.rotate-in { animation: rotateIn 0.8s ease forwards; }
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 📱 Main Screens */
+#welcome-screen,
+#phrase-screen,
+#celebration {
+  background: var(--card-light);
+  backdrop-filter: blur(10px);
+  padding: 2em 2.5em;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  width: 90%;
+  max-width: 800px;
+  max-height: 80vh;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+#welcome-screen:hover,
+#phrase-screen:hover,
+#celebration:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* 🌙 Dark Mode */
+body.dark #welcome-screen,
+body.dark #phrase-screen,
+body.dark #celebration {
+  background: linear-gradient(135deg, rgba(40, 40, 60, 0.95) 0%, rgba(50, 50, 70, 0.95) 100%);
+  color: var(--text-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+body.dark input[type="text"] {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+body.dark input[type="text"]:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.15);
+}
+body.dark .spinner {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: var(--primary);
+}
+body.dark .controls button,
+body.dark #celebration button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+body.dark .controls button:hover,
+body.dark #celebration button:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* 🧠 Headings & Labels */
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.5px;
+}
+body.dark h2 {
+  background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+label, h3 {
+  font-weight: 600;
+  color: #555;
+  font-size: 1.1em;
+}
+body.dark label,
+body.dark h3 {
+  color: #ddd;
+}
+h3 {
+  margin-top: 1.8em;
+  margin-bottom: 1em;
+}
+
+/* ✏️ Input Field */
+input[type="text"] {
+  padding: 0.6em 1em;
+  font-size: 1.1em;
+  width: clamp(180px, 45%, 350px);
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1em;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0, 120, 212, 0.1);
+  transform: scale(1.02);
+}
+
+/* 🔘 Difficulty Buttons */
+.difficulty-buttons {
+  display: flex;
+  gap: 0.8em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.8em 0;
+}
+.difficulty-buttons button {
+  margin: 0.2em;
+  padding: 0.7em 1.8em;
+  font-size: 1.1em;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.difficulty-buttons button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+.difficulty-buttons button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+.difficulty-buttons button:nth-child(1) { 
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+.difficulty-buttons button:nth-child(2) { 
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+.difficulty-buttons button:nth-child(3) { 
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+.difficulty-buttons button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+.difficulty-buttons button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+
+/* 💬 Phrase Display */
+#hinglish-phrase {
+  font-size: 3em;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 1.2em 0;
+  word-wrap: break-word;
+  line-height: 1.3;
+  padding: 0.5em;
+  border-radius: 16px;
+  background-color: rgba(102, 126, 234, 0.05);
+}
+body.dark #hinglish-phrase {
+  background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-color: rgba(168, 192, 255, 0.05);
+}
+#english-translation {
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 1.2em 0;
+  min-height: 1.5em;
+  transition: opacity 0.3s ease;
+  word-wrap: break-word;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+  padding: 0.5em;
+  border-radius: 16px;
+  background-color: rgba(255, 107, 107, 0.05);
+}
+body.dark #english-translation {
+  color: #ff9999;
+  background-color: rgba(255, 153, 153, 0.05);
+}
+@keyframes flipPhrase {
+  0% { opacity: 0; transform: rotateY(90deg); }
+  100% { opacity: 1; transform: rotateY(0deg); }
+}
+.phrase-flip {
+  animation: flipPhrase 0.6s ease-out forwards;
+}
+
+/* 🧭 Controls */
+.controls {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2em;
+}
+.controls button,
+#celebration button {
+  margin: 0.3em;
+  padding: 1em 2.5em;
+  font-size: 1.2em;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.controls button::before,
+#celebration button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+.controls button:hover::before,
+#celebration button:hover::before {
+  left: 100%;
+}
+.controls button:hover,
+#celebration button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+.controls button:active,
+#celebration button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.controls button:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.vocab-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0.7em 1.8em;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.vocab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+.vocab-btn:hover::before {
+  left: 100%;
+}
+.vocab-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(245, 87, 108, 0.5);
+}
+.vocab-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+
+/* ⏳ Loader Spinner */
+.spinner {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 🎉 Celebration */
+#celebration h2 { font-size: 2em; color: #2e7d32; }
+#celebration p { font-size: 1.2em; color: #444; margin-bottom: 1em; }
+
+/* 📊 Progress Text + Bar */
+#progress-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 1.5em auto;
+  text-align: center;
+}
+#progress-text {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0.6em;
+  color: var(--text-dark);
+}
+body.dark #progress-text {
+  color: var(--text-light);
+}
+#progress-bar {
+  height: 18px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+body.dark #progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+}
+#progress-bar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.5s ease;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  h2 { font-size: 2em; }
+  h3 { font-size: 1em; }
+  #hinglish-phrase { font-size: 2em; }
+  #english-translation { font-size: 1.8em; }
+  .difficulty-buttons button { 
+    padding: 0.7em 1.5em; 
+    font-size: 1.1em; 
+  }
+  .controls button,
+  #celebration button,
+  .vocab-btn { 
+    padding: 0.8em 1.8em; 
+    font-size: 1em; 
+  }
+  #welcome-screen, #phrase-screen, #celebration { 
+    padding: 2em 1.5em; 
+  }
+}
+
+@media (max-width: 480px) {
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 0.95em; }
+  #hinglish-phrase { font-size: 1.5em; }
+  #english-translation { font-size: 1.3em; }
+  input[type="text"] { 
+    font-size: 1.1em; 
+    width: 90%; 
+    padding: 0.6em;
+  }
+  .difficulty-buttons { 
+    flex-direction: column; 
+    gap: 0.5em;
+  }
+  .difficulty-buttons button { 
+    width: 100%; 
+    padding: 0.8em; 
+    font-size: 1em; 
+  }
+  .controls { 
+    flex-direction: column; 
+    gap: 0.5em;
+    width: 100%;
+  }
+  .controls button,
+  #celebration button,
+  .vocab-btn { 
+    width: 100%; 
+    padding: 0.9em; 
+    font-size: 1em; 
+  }
+  #welcome-screen, #phrase-screen, #celebration { 
+    padding: 1.5em 1em; 
+  }
+  #theme-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5em;
+  }
+}
+/* ✨ Celebration Subtext Style */
+.celebration-sub {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary, #888);
+  margin-top: -0.3em;
+  margin-bottom: 1em;
+  opacity: 0.9;
+  transition: color 0.3s ease;
+}
+
+body.dark .celebration-sub {
+  color: #bbb;
+}
+
+/* 📖 Vocabulary Styles */
+#phrase-screen ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 700px;
+}
+
+#phrase-screen ul li {
+  margin-bottom: 0.8em;
+  margin-top: 0;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  padding: 0.9em;
+  border-radius: 12px;
+  border-left: 4px solid #667eea;
+  transition: all 0.3s ease;
+  text-align: left;
+  display: block;
+}
+
+#phrase-screen ul li:first-child {
+  margin-top: 0;
+}
+
+#phrase-screen ul li:last-child {
+  margin-bottom: 0;
+}
+
+#phrase-screen ul li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+  border-left-width: 6px;
+}
+
+body.dark #phrase-screen ul li {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-left-color: #a8c0ff;
+}
+
+#phrase-screen ul li strong {
+  font-size: 1.1em;
+  color: #667eea;
+  display: inline-block;
+  margin-bottom: 0.2em;
+}
+
+body.dark #phrase-screen ul li strong {
+  color: #a8c0ff;
+}
+
+#phrase-screen ul li em {
+  color: #764ba2;
+  font-size: 0.95em;
+  display: block;
+  margin: 0.3em 0;
+}
+
+body.dark #phrase-screen ul li em {
+  color: #c2a8ff;
+}
+
+#phrase-screen ul li span {
+  color: #555;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+body.dark #phrase-screen ul li span {
+  color: #ccc;
+}
+
+#phrase-screen ul li button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+#phrase-screen ul li button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+#phrase-screen ul li button:active {
+  transform: scale(1.05);
+}
+
+/* Category Badge Styles */
+#phrase-screen ul li div {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+#phrase-screen ul li span[style*="background"] {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+#phrase-screen ul li:hover span[style*="background"] {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+}
+
+
+/* 🎨 Custom Scrollbar */
+#welcome-screen::-webkit-scrollbar,
+#phrase-screen::-webkit-scrollbar,
+#celebration::-webkit-scrollbar {
+  width: 8px;
+}
+
+#welcome-screen::-webkit-scrollbar-track,
+#phrase-screen::-webkit-scrollbar-track,
+#celebration::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+#welcome-screen::-webkit-scrollbar-thumb,
+#phrase-screen::-webkit-scrollbar-thumb,
+#celebration::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+}
+
+#welcome-screen::-webkit-scrollbar-thumb:hover,
+#phrase-screen::-webkit-scrollbar-thumb:hover,
+#celebration::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* 🎯 Focus States */
+button:focus,
+input:focus {
+  outline: 3px solid rgba(102, 126, 234, 0.5);
+  outline-offset: 2px;
+}
+
+/* ✨ Loading Animation Enhancement */
+.spinner {
+  animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* 🎭 Smooth Transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 📱 Touch Feedback for Mobile */
+@media (hover: none) and (pointer: coarse) {
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  .difficulty-buttons button:active,
+  .controls button:active,
+  .vocab-btn:active {
+    transform: scale(0.95) !important;
+  }
+}
+
+
+/* 🔊 Speaker Button Styles */
+#hinglish-phrase button,
+#english-translation button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin-left: 15px;
+}
+
+#hinglish-phrase button:hover,
+#english-translation button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+#hinglish-phrase button:active,
+#english-translation button:active {
+  transform: scale(1.05);
+}
+
+/* Audio tip box */
+.audio-tip {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

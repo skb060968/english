@@ -1,0 +1,224 @@
+{
+  "categories": [
+    {
+      "name": "Business & Professional",
+      "phrases": [
+        {
+          "type": "qa-english",
+          "english": "Could you please send me the report?",
+          "answer": "Sure, I'll email it to you by end of day."
+        },
+        {
+          "type": "qa-english",
+          "english": "When is the deadline for this project?",
+          "answer": "We need to submit it by Friday afternoon."
+        },
+        {
+          "type": "qa-english",
+          "english": "Let's schedule a meeting to discuss this.",
+          "answer": "That sounds good. How about tomorrow at 2 PM?"
+        },
+        {
+          "type": "qa-english",
+          "english": "I need your feedback on this proposal.",
+          "answer": "I'll review it and get back to you by tomorrow."
+        },
+        {
+          "type": "qa-english",
+          "english": "Can we postpone the meeting?",
+          "answer": "Yes, let's reschedule for next week."
+        },
+        {
+          "type": "qa-english",
+          "english": "What's your opinion on this strategy?",
+          "answer": "I think it's solid, but we should test it first."
+        },
+        {
+          "type": "qa-english",
+          "english": "We need to increase our productivity.",
+          "answer": "I agree. Let's implement better time management."
+        },
+        {
+          "type": "qa-english",
+          "english": "How was the client meeting?",
+          "answer": "It went well. They're interested in our proposal."
+        },
+        {
+          "type": "qa-english",
+          "english": "Can you handle this task?",
+          "answer": "Yes, I'll take care of it right away."
+        },
+        {
+          "type": "qa-english",
+          "english": "Great job on the presentation!",
+          "answer": "Thank you! I'm glad it was well-received."
+        }
+      ]
+    },
+    {
+      "name": "Advanced Conversations",
+      "phrases": [
+        {
+          "type": "qa-english",
+          "english": "What do you think about climate change?",
+          "answer": "It's a serious issue that requires immediate action."
+        },
+        {
+          "type": "qa-english",
+          "english": "How do you stay motivated?",
+          "answer": "I set small goals and celebrate each achievement."
+        },
+        {
+          "type": "qa-english",
+          "english": "What's your biggest achievement?",
+          "answer": "Completing my master's degree while working full-time."
+        },
+        {
+          "type": "qa-english",
+          "english": "Do you believe in work-life balance?",
+          "answer": "Absolutely! It's essential for mental health."
+        },
+        {
+          "type": "qa-english",
+          "english": "What inspires you the most?",
+          "answer": "People who overcome challenges and never give up."
+        },
+        {
+          "type": "qa-english",
+          "english": "How do you handle stress?",
+          "answer": "I practice meditation and exercise regularly."
+        },
+        {
+          "type": "qa-english",
+          "english": "What's your dream destination?",
+          "answer": "I've always wanted to visit New Zealand."
+        },
+        {
+          "type": "qa-english",
+          "english": "If you could learn any skill, what would it be?",
+          "answer": "I'd love to learn how to play the piano."
+        },
+        {
+          "type": "qa-english",
+          "english": "What's the best advice you've ever received?",
+          "answer": "Never stop learning and stay curious."
+        },
+        {
+          "type": "qa-english",
+          "english": "How do you define success?",
+          "answer": "Being happy and making a positive impact on others."
+        }
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "phrases": [
+        {
+          "type": "qa-english",
+          "english": "We have a problem with the system.",
+          "answer": "Let me check what's causing the issue."
+        },
+        {
+          "type": "qa-english",
+          "english": "How can we improve this process?",
+          "answer": "We should analyze the bottlenecks first."
+        },
+        {
+          "type": "qa-english",
+          "english": "This isn't working as expected.",
+          "answer": "Let's troubleshoot and find the root cause."
+        },
+        {
+          "type": "qa-english",
+          "english": "Can you suggest a better approach?",
+          "answer": "How about we try a different methodology?"
+        },
+        {
+          "type": "qa-english",
+          "english": "We're running out of time!",
+          "answer": "Let's prioritize the most critical tasks."
+        },
+        {
+          "type": "qa-english",
+          "english": "I'm stuck on this problem.",
+          "answer": "Take a break and come back with fresh eyes."
+        },
+        {
+          "type": "qa-english",
+          "english": "What's the best solution here?",
+          "answer": "Let's weigh the pros and cons of each option."
+        },
+        {
+          "type": "qa-english",
+          "english": "We need to think outside the box.",
+          "answer": "Agreed. Let's brainstorm some creative ideas."
+        },
+        {
+          "type": "qa-english",
+          "english": "This is more complicated than I thought.",
+          "answer": "Don't worry, we'll figure it out together."
+        },
+        {
+          "type": "qa-english",
+          "english": "How did you solve that issue?",
+          "answer": "I researched similar cases and adapted the solution."
+        }
+      ]
+    },
+    {
+      "name": "Social Situations",
+      "phrases": [
+        {
+          "type": "qa-english",
+          "english": "Would you like to join us for dinner?",
+          "answer": "I'd love to! What time should I be there?"
+        },
+        {
+          "type": "qa-english",
+          "english": "How do you know the host?",
+          "answer": "We went to college together."
+        },
+        {
+          "type": "qa-english",
+          "english": "This party is amazing!",
+          "answer": "I know! The music and food are fantastic."
+        },
+        {
+          "type": "qa-english",
+          "english": "Can I get you something to drink?",
+          "answer": "Yes, a glass of juice would be great."
+        },
+        {
+          "type": "qa-english",
+          "english": "Have you tried the dessert?",
+          "answer": "Not yet, but it looks delicious!"
+        },
+        {
+          "type": "qa-english",
+          "english": "Let me introduce you to my friend.",
+          "answer": "Sure, I'd be happy to meet them."
+        },
+        {
+          "type": "qa-english",
+          "english": "What brings you here tonight?",
+          "answer": "I was invited by a mutual friend."
+        },
+        {
+          "type": "qa-english",
+          "english": "This is such a lovely place!",
+          "answer": "Yes, the ambiance is really nice."
+        },
+        {
+          "type": "qa-english",
+          "english": "Thanks for inviting me!",
+          "answer": "You're welcome! I'm glad you could make it."
+        },
+        {
+          "type": "qa-english",
+          "english": "I had a wonderful time tonight.",
+          "answer": "Me too! Let's do this again soon."
+        }
+      ]
+    }
+  ]
+}
