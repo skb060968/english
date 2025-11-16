@@ -36,6 +36,9 @@ window.addEventListener("DOMContentLoaded", () => {
       splash.style.display = "none";
       welcome.style.display = "flex";
       welcome.classList.add("rotate-in");
+      
+      // Check for saved progress
+      checkSavedProgress();
     }, 600);
   }, 1500);
 
@@ -44,6 +47,159 @@ window.addEventListener("DOMContentLoaded", () => {
   // Register service worker and listen for updates
   registerServiceWorker();
 });
+
+/* =========================
+   PROGRESS SAVE & RESTORE
+   ========================= */
+function saveProgress() {
+  const progress = {
+    username: username,
+    level: selectedLevel,
+    fileIndex: currentFileIndex,
+    phraseIndex: index,
+    timestamp: Date.now()
+  };
+  localStorage.setItem('learnEnglishProgress', JSON.stringify(progress));
+}
+
+function checkSavedProgress() {
+  const saved = localStorage.getItem('learnEnglishProgress');
+  if (!saved) return;
+  
+  const progress = JSON.parse(saved);
+  
+  // Check if progress is less than 7 days old
+  const daysSince = (Date.now() - progress.timestamp) / (1000 * 60 * 60 * 24);
+  if (daysSince > 7) {
+    localStorage.removeItem('learnEnglishProgress');
+    return;
+  }
+  
+  // Show resume banner
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const usernameField = document.getElementById('username');
+  
+  // Pre-fill username
+  if (progress.username) {
+    usernameField.value = progress.username;
+  }
+  
+  // Create resume banner
+  const resumeBanner = document.createElement('div');
+  resumeBanner.id = 'resume-banner';
+  resumeBanner.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1em; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 0.8em; flex: 1; min-width: 200px;">
+        <span style="font-size: 1.8em;">📖</span>
+        <div>
+          <strong style="display: block; margin-bottom: 0.2em; font-size: 1.1em;">Continue Learning?</strong>
+          <span style="font-size: 0.9em; opacity: 0.9;">
+            ${capitalize(progress.level)} Level - File ${progress.fileIndex + 1} - Phrase ${progress.phraseIndex + 1}
+          </span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.8em; flex-wrap: wrap;">
+        <button onclick="resumeProgress()" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; padding: 0.7em 1.5em; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95em; box-shadow: 0 4px 12px rgba(17, 153, 142, 0.3); transition: all 0.3s ease; white-space: nowrap;">
+          ▶️ Resume
+        </button>
+        <button onclick="clearProgress()" style="background: rgba(255, 107, 107, 0.2); color: #ff6b6b; border: 2px solid #ff6b6b; padding: 0.7em 1.5em; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.3s ease; white-space: nowrap;">
+          🔄 Start Fresh
+        </button>
+      </div>
+    </div>
+  `;
+  
+  // Add styles
+  const style = document.createElement('style');
+  style.textContent = `
+    #resume-banner {
+      margin: 1.5em 0;
+      padding: 1.2em;
+      background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
+      border: 2px solid rgba(17, 153, 142, 0.3);
+      border-radius: 16px;
+      animation: slideIn 0.5s ease;
+    }
+    
+    body.dark #resume-banner {
+      background: linear-gradient(135deg, rgba(17, 153, 142, 0.15) 0%, rgba(56, 239, 125, 0.15) 100%);
+      border-color: rgba(17, 153, 142, 0.4);
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    #resume-banner button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    #resume-banner button:active {
+      transform: translateY(0);
+    }
+    
+    @media (max-width: 600px) {
+      #resume-banner {
+        padding: 1em;
+      }
+      #resume-banner > div {
+        flex-direction: column;
+        align-items: stretch !important;
+      }
+      #resume-banner button {
+        width: 100%;
+        padding: 0.8em;
+      }
+    }
+  `;
+  
+  welcomeScreen.insertBefore(style, welcomeScreen.firstChild);
+  welcomeScreen.insertBefore(resumeBanner, usernameField.parentElement);
+}
+
+async function resumeProgress() {
+  const saved = localStorage.getItem('learnEnglishProgress');
+  if (!saved) return;
+  
+  const progress = JSON.parse(saved);
+  
+  username = progress.username;
+  selectedLevel = progress.level;
+  currentFileIndex = progress.fileIndex;
+  index = progress.phraseIndex;
+  
+  unlockSpeech();
+  await loadVoices();
+  
+  const welcome = document.getElementById("welcome-screen");
+  const phrase = document.getElementById("phrase-screen");
+  
+  welcome.classList.add("rotate-out");
+  setTimeout(() => {
+    welcome.style.display = "none";
+    phrase.style.display = "flex";
+    phrase.classList.add("rotate-in");
+    document.getElementById("loader").style.display = "block";
+    loadPhrases(levelFiles[selectedLevel][currentFileIndex]);
+  }, 600);
+}
+
+function clearProgress() {
+  localStorage.removeItem('learnEnglishProgress');
+  const banner = document.getElementById('resume-banner');
+  if (banner) {
+    banner.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => banner.remove(), 300);
+  }
+}
 
 /* =========================
    SERVICE WORKER & UPDATE NOTIFICATION
@@ -179,6 +335,9 @@ async function startTest(level) {
   selectedLevel = level;
   currentFileIndex = 0;
   index = 0;
+  
+  // Save initial progress
+  saveProgress();
 
   const welcome = document.getElementById("welcome-screen");
   const phrase = document.getElementById("phrase-screen");
@@ -365,6 +524,10 @@ function replayTranslation() {
 function nextPhrase() {
   if (!translationRevealed) return;
   index++;
+  
+  // Save progress after each phrase
+  saveProgress();
+  
   if (index >= phrases.length) {
     setTimeout(celebrate, 400);
     return;
@@ -441,10 +604,16 @@ function moveToNextFile() {
   } else {
     alert("You’ve already completed all available levels!");
     moveBtn.style.display = "none";
+    // Clear progress when all levels completed
+    localStorage.removeItem('learnEnglishProgress');
     return;
   }
 
   index = 0;
+  
+  // Save progress when moving to next file
+  saveProgress();
+  
   celebration.style.display = "none";
   document.getElementById("phrase-screen").style.display = "flex";
   document.getElementById("loader").style.display = "block";
@@ -713,10 +882,10 @@ function showVocabulary(words) {
         </li>
       `).join("")}
     </ul>
-    <div class="controls" style="margin-top: 0.8em;">
-      <button id="new-words-btn" class="vocab-btn" style="padding: 0.5em 1em; font-size: 0.85em;">🔄 New Words</button>
-      <button id="reset-progress-btn" class="vocab-btn" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 0.5em 1em; font-size: 0.85em;">🔄 Reset</button>
-      <button class="vocab-btn" onclick="exitApp()" style="padding: 0.5em 1em; font-size: 0.85em;">🏠 Home</button>
+    <div class="vocab-controls" style="margin-top: 1em; display: flex; gap: 0.6em; justify-content: center; flex-wrap: wrap;">
+      <button id="new-words-btn" class="vocab-btn" style="padding: 0.8em 1.2em; font-size: 0.9em; flex: 1.3; min-width: 120px;">🔄 New Words</button>
+      <button id="reset-progress-btn" class="vocab-btn" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 0.8em 1.2em; font-size: 0.9em; flex: 1; min-width: 100px;">🔄 Reset</button>
+      <button class="vocab-btn" onclick="exitApp()" style="padding: 0.8em 1.2em; font-size: 0.9em; flex: 1; min-width: 100px;">🏠 Home</button>
     </div>
   `;
 
