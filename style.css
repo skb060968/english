@@ -164,13 +164,13 @@ body.dark #splash-screen {
 #celebration {
   background: var(--card-light);
   backdrop-filter: blur(10px);
-  padding: 2em 2.5em;
+  padding: 1.5em 2em;
   border-radius: 24px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(102, 126, 234, 0.2);
   width: 90%;
   max-width: 800px;
-  max-height: 80vh;
+  max-height: 85vh;
   text-align: center;
   display: none;
   flex-direction: column;
@@ -249,6 +249,57 @@ body.dark h3 {
 h3 {
   margin-top: 1.8em;
   margin-bottom: 1em;
+}
+
+/* Welcome Screen Subtitle */
+.welcome-subtitle {
+  color: #666;
+}
+body.dark .welcome-subtitle {
+  color: #ccc;
+}
+
+/* Audio Tip Text */
+.audio-tip-text {
+  color: #666;
+}
+body.dark .audio-tip-text {
+  color: #ddd;
+}
+
+/* Vocabulary Description */
+.vocab-description {
+  color: #666;
+}
+body.dark .vocab-description {
+  color: #ccc;
+}
+
+/* Vocabulary Hindi Translation */
+.vocab-hindi {
+  font-size: 1.05em;
+  font-weight: 600;
+  font-style: normal;
+  color: #555;
+  line-height: 1.2;
+}
+body.dark .vocab-hindi {
+  color: #fff !important;
+}
+
+/* Vocabulary Screen Subtitles */
+.vocab-subtitle {
+  color: #666;
+}
+body.dark .vocab-subtitle {
+  color: #ccc;
+}
+
+.vocab-progress {
+  color: #999;
+}
+body.dark .vocab-progress {
+  color: #bbb;
 }
 
 /* ✏️ Input Field */
@@ -335,10 +386,10 @@ input[type="text"]:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin: 1.2em 0;
+  margin: 0.8em 0 0.6em 0;
   word-wrap: break-word;
   line-height: 1.3;
-  padding: 0.5em;
+  padding: 0.4em;
   border-radius: 16px;
   background-color: rgba(102, 126, 234, 0.05);
 }
@@ -353,7 +404,7 @@ body.dark #hinglish-phrase {
   font-size: 2.5em;
   font-weight: 700;
   color: var(--accent);
-  margin: 1.2em 0;
+  margin: 0.6em 0 0.8em 0;
   min-height: 1.5em;
   transition: opacity 0.3s ease;
   word-wrap: break-word;
@@ -361,7 +412,7 @@ body.dark #hinglish-phrase {
   margin-left: auto;
   margin-right: auto;
   line-height: 1.4;
-  padding: 0.5em;
+  padding: 0.4em;
   border-radius: 16px;
   background-color: rgba(255, 107, 107, 0.05);
 }
@@ -383,7 +434,7 @@ body.dark #english-translation {
   gap: 1em;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .controls button,
 #celebration button {
@@ -495,7 +546,7 @@ body.dark #english-translation {
 #progress-container {
   width: 90%;
   max-width: 600px;
-  margin: 1.5em auto;
+  margin: 0.8em auto;
   text-align: center;
 }
 #progress-text {
@@ -660,13 +711,16 @@ body.dark #phrase-screen ul li strong {
 
 #phrase-screen ul li em {
   color: #764ba2;
-  font-size: 0.95em;
+  font-size: 1.05em;
+  font-weight: 600;
+  font-style: normal;
   display: block;
   margin: 0.3em 0;
+  line-height: 1.2;
 }
 
 body.dark #phrase-screen ul li em {
-  color: #c2a8ff;
+  color: #e0d4ff;
 }
 
 #phrase-screen ul li span {
@@ -813,4 +867,93 @@ input:focus {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📖 Usage Modal */
+#usage-modal-content {
+  background: white;
+}
+
+body.dark #usage-modal-content {
+  background: #2a2a40 !important;
+  color: #fff;
+}
+
+/* Usage Modal Text Elements */
+.usage-title {
+  color: #000;
+  font-weight: 700;
+}
+
+body.dark .usage-title {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.usage-hindi {
+  color: #000;
+  font-weight: 700;
+}
+
+body.dark .usage-hindi {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.usage-phonetic {
+  color: #000;
+  font-weight: 600;
+}
+
+body.dark .usage-phonetic {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.usage-pos {
+  color: #000;
+  font-weight: 700;
+}
+
+body.dark .usage-pos {
+  color: #fff !important;
+  font-weight: 700;
+}
+
+.usage-definition {
+  color: #000;
+  font-weight: 600;
+}
+
+body.dark .usage-definition {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.usage-example {
+  color: #000;
+  font-weight: 600;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+body.dark .usage-example {
+  color: #fff !important;
+  font-weight: 600;
+  background: rgba(168, 192, 255, 0.15) !important;
+}
+
+.usage-error {
+  color: #ff6b6b;
+}
+
+body.dark .usage-error {
+  color: #ff9999;
+}
+
+.usage-error-msg {
+  color: #666;
+}
+
+body.dark .usage-error-msg {
+  color: #bbb;
 }

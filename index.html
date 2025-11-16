@@ -31,13 +31,13 @@
 
   <!-- 👋 Welcome Screen -->
   <div id="welcome-screen" style="display:none;">
-    <h2 style="margin-bottom: 0.5em;">🌟 Welcome to Learn English! 🌟</h2>
-    <p style="font-size: 0.95em; color: #666; margin-bottom: 1.2em;">Master English with interactive lessons</p>
+    <h2 style="margin-bottom: 0.3em;">Welcome to Learn English!</h2>
+    <p style="font-size: 0.95em; margin-bottom: 0.8em;" class="welcome-subtitle">Master English with interactive lessons</p>
 
     <label for="username" style="font-size: 0.95em;">👤 Enter your name:</label><br />
-    <input type="text" id="username" placeholder="Your Name" style="margin-bottom: 1em;" /><br />
+    <input type="text" id="username" placeholder="Your Name" style="margin-bottom: 0.6em;" /><br />
 
-    <h3 style="margin: 1em 0 0.8em 0; font-size: 1.1em;">🎯 Select Your Level</h3>
+    <h3 style="margin: 0.6em 0 0.6em 0; font-size: 1.1em;">🎯 Select Your Level</h3>
     <div class="difficulty-buttons">
       <button onclick="startTest('easy')">🟢 Easy</button>
       <button onclick="startTest('medium')">🟡 Medium</button>
@@ -47,25 +47,27 @@
     <div
       style="margin: 1.2em 0 0.8em 0; padding: 1em; background: rgba(102, 126, 234, 0.05); border-radius: 12px; border-left: 4px solid #667eea;">
       <h3 style="margin: 0 0 0.5em 0; font-size: 1em;">📚 Or Expand Your Vocabulary</h3>
-      <p style="font-size: 0.85em; color: #666; margin-bottom: 0.8em;">Learn new words with meanings and translations
+      <p style="font-size: 0.85em; margin-bottom: 0.8em;" class="vocab-description">Learn new words with meanings and translations
       </p>
       <button onclick="loadVocabulary()" class="vocab-btn" style="padding: 0.7em 1.8em; font-size: 1em;">📘 Start
         Vocabulary</button>
     </div>
 
     <div
-      style="margin-top: 1em; padding: 0.7em; background: rgba(255, 193, 7, 0.1); border-radius: 10px; border: 1px solid rgba(255, 193, 7, 0.3);">
-      <p style="font-size: 0.75em; color: #666; margin: 0;">
+      style="margin-top: 0.6em; padding: 0.6em; background: rgba(255, 193, 7, 0.1); border-radius: 10px; border: 1px solid rgba(255, 193, 7, 0.3);">
+      <p style="font-size: 0.75em; margin: 0;" class="audio-tip-text">
         🔊 Click speaker buttons to replay audio anytime
       </p>
     </div>
   </div>
 
-  <!-- 🔄 Vocabulary Loader -->
-  <div id="vocab-loader" class="spinner" style="display:none;">
-    Loading Vocabulary...
+  <!-- 📖 Usage Modal -->
+  <div id="usage-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; justify-content: center; align-items: center;">
+    <div id="usage-modal-content" style="border-radius: 20px; padding: 2em; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative;">
+      <button onclick="closeUsageModal()" style="position: absolute; top: 15px; right: 15px; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; font-size: 1.2em; cursor: pointer; font-weight: bold;">×</button>
+      <div id="usage-content"></div>
+    </div>
   </div>
-
 
   <!-- 🧠 Phrase Screen -->
   <div id="phrase-screen" style="display:none;">

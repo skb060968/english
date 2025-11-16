@@ -185,7 +185,7 @@ function showPhrase() {
   
   hinglish.innerHTML = `
     ${displayText}
-    <button onclick="replayCurrentPhrase()" style="margin-left: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;" title="Play audio">🔊</button>
+    <button onclick="replayCurrentPhrase()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;" title="Play audio">🔊</button>
   `;
   speak(displayText, language);
 
@@ -227,7 +227,7 @@ function revealTranslation() {
   
   english.innerHTML = `
     ${translationText}
-    <button onclick="replayTranslation()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease;" title="Play audio">🔊</button>
+    <button onclick="replayTranslation()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;" title="Play audio">🔊</button>
   `;
   english.style.display = "block";
   void english.offsetWidth;
@@ -513,13 +513,16 @@ let usedWords = new Set();
 async function loadVocabulary() {
   const phraseScreen = document.getElementById("phrase-screen");
   const welcomeScreen = document.getElementById("welcome-screen");
-  const loader = document.getElementById("vocab-loader");
 
-  // Hide welcome, show loader
-  welcomeScreen.style.display = "none";
-  phraseScreen.style.display = "flex";
-  phraseScreen.innerHTML = "";
-  loader.style.display = "block";
+  // Add transition effect
+  welcomeScreen.classList.add("rotate-out");
+  
+  setTimeout(() => {
+    welcomeScreen.style.display = "none";
+    welcomeScreen.classList.remove("rotate-out");
+    phraseScreen.style.display = "flex";
+    phraseScreen.innerHTML = "";
+  }, 600);
 
   try {
     // Load vocabulary database if not already loaded
@@ -555,13 +558,18 @@ async function loadVocabulary() {
     // Mark these words as used
     selectedWords.forEach(word => usedWords.add(word.english));
 
-    loader.style.display = "none";
-    showVocabulary(selectedWords);
+    // Wait for transition to complete before showing vocabulary
+    setTimeout(() => {
+      showVocabulary(selectedWords);
+      phraseScreen.classList.add("rotate-in");
+      setTimeout(() => phraseScreen.classList.remove("rotate-in"), 800);
+    }, 600);
 
   } catch (err) {
-    loader.style.display = "none";
     console.error("Error loading vocabulary:", err);
     alert("Unable to load vocabulary. Please try again.");
+    welcomeScreen.style.display = "flex";
+    phraseScreen.style.display = "none";
   }
 }
 
@@ -575,19 +583,21 @@ function showVocabulary(words) {
   
   phraseScreen.innerHTML = `
     <h2 style="font-size: 1.6em; margin-bottom: 0.2em; margin-top: 0;">📘 Vocabulary Builder</h2>
-    <p style="font-size: 0.85em; color: #666; margin: 0 0 0.15em 0;">Learn 10 new words at a time</p>
-    <p style="font-size: 0.8em; color: #999; margin: 0 0 0.6em 0;">
+    <p class="vocab-subtitle" style="font-size: 0.85em; margin: 0 0 0.15em 0;">Learn 10 new words at a time</p>
+    <p class="vocab-progress" style="font-size: 0.8em; margin: 0 0 0.6em 0;">
       📊 Progress: ${totalLearned} / ${totalAvailable} words learned
     </p>
-    <ul style="display: grid; gap: 0.5em;">
+    <ul style="display: grid; gap: 0.2em;">
       ${words.map((w, i) => `
-        <li style="padding: 0.5em 0.7em; margin: 0; display: flex; justify-content: space-between; align-items: center;">
+        <li style="padding: 0.4em 0.7em; margin: 0; display: flex; justify-content: space-between; align-items: center;">
           <div style="flex: 1; display: flex; align-items: center; gap: 0.5em; min-width: 0;">
             <strong style="font-size: 1em; white-space: nowrap; flex-shrink: 0;">${i + 1}. ${w.english}</strong>
-            <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.12em 0.4em; border-radius: 6px; font-size: 0.65em; white-space: nowrap; flex-shrink: 0;">${w.category}</span>
-            <em style="font-size: 0.9em; color: #555; flex: 1; min-width: 0;">${w.hindi}</em>
+            <em class="vocab-hindi" style="flex: 1; min-width: 0;">${w.hindi}</em>
           </div>
-          <button onclick="speakWord('${w.english}')" style="width: 30px; height: 30px; font-size: 0.9em; flex-shrink: 0; margin-left: 0.5em;">🔊</button>
+          <div style="display: flex; gap: 0.3em; flex-shrink: 0; margin-left: 0.5em;">
+            <button onclick="showUsage('${w.english.replace(/'/g, "\\'")}', '${w.hindi.replace(/'/g, "\\'")}')" style="width: 60px; height: 30px; font-size: 0.75em; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; border-radius: 15px; cursor: pointer; font-weight: 600; box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);" title="Show usage">Usage</button>
+            <button onclick="speakWord('${w.english}')" style="width: 30px; height: 30px; font-size: 0.9em;">🔊</button>
+          </div>
         </li>
       `).join("")}
     </ul>
@@ -613,3 +623,128 @@ function speakWord(word) {
   utter.lang = "en-US";
   speechSynthesis.speak(utter);
 }
+
+/* ==========================
+   Usage Modal Feature
+   ========================== */
+
+async function showUsage(word, hindi) {
+  const modal = document.getElementById("usage-modal");
+  const content = document.getElementById("usage-content");
+  
+  // Show modal with loading state
+  modal.style.display = "flex";
+  content.innerHTML = `
+    <h2 style="margin-top: 0; color: #667eea;">${word}</h2>
+    <p style="font-size: 1.1em; color: #764ba2; font-weight: 600;">${hindi}</p>
+    <div class="spinner" style="margin: 2em auto;"></div>
+    <p style="text-align: center; color: #666;">Fetching usage examples...</p>
+  `;
+  
+  try {
+    // Fetch from Merriam-Webster Collegiate Dictionary API
+    // Get your free API key from: https://dictionaryapi.com/register/index
+    const apiKey = '9ea19909-060f-490b-9619-d85980c08d58';
+    
+    const response = await fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${apiKey}`);
+    
+    if (!response.ok) {
+      throw new Error("API request failed");
+    }
+    
+    const data = await response.json();
+    
+    // Check if word was found (API returns array of strings if not found)
+    if (!Array.isArray(data) || data.length === 0 || typeof data[0] === 'string') {
+      throw new Error("Word not found");
+    }
+    
+    const entry = data[0];
+    
+    // Extract definitions and examples
+    let usageHTML = `
+      <h2 class="usage-title" style="margin-top: 0;">${word}</h2>
+      <p class="usage-hindi" style="font-size: 1.1em; font-weight: 600; margin-bottom: 1.5em;">${hindi}</p>
+    `;
+    
+    // Add pronunciation if available
+    if (entry.hwi && entry.hwi.prs && entry.hwi.prs[0]) {
+      const pronText = entry.hwi.prs[0].mw || entry.hwi.prs[0].ipa || '';
+      if (pronText) {
+        usageHTML += `<p class="usage-phonetic" style="font-style: italic; margin-bottom: 1em;">\\${pronText}\\</p>`;
+      }
+    }
+    
+    // Add definitions with examples
+    if (entry.shortdef && entry.shortdef.length > 0) {
+      // Get part of speech
+      const partOfSpeech = entry.fl || '';
+      
+      usageHTML += `<div style="margin-bottom: 1.5em;">`;
+      if (partOfSpeech) {
+        usageHTML += `<h3 class="usage-pos" style="font-size: 1em; margin-bottom: 0.5em;">${partOfSpeech}</h3>`;
+      }
+      
+      // Show up to 3 definitions
+      entry.shortdef.slice(0, 3).forEach((def, idx) => {
+        usageHTML += `<p class="usage-definition" style="margin: 0.5em 0;"><strong>${idx + 1}.</strong> ${def}</p>`;
+        
+        // Try to find examples for this definition
+        if (entry.def && entry.def[0] && entry.def[0].sseq) {
+          const senses = entry.def[0].sseq.flat(2);
+          senses.forEach(sense => {
+            if (sense.dt) {
+              sense.dt.forEach(item => {
+                if (item[0] === 'vis' && item[1] && item[1][0]) {
+                  const exampleText = item[1][0].t
+                    .replace(/{it}/g, '')
+                    .replace(/{\/it}/g, '')
+                    .replace(/{bc}/g, '')
+                    .replace(/{wi}/g, '')
+                    .replace(/{\/wi}/g, '')
+                    .replace(/{phrase}/g, '')
+                    .replace(/{\/phrase}/g, '')
+                    .replace(/{ldquo}/g, '"')
+                    .replace(/{rdquo}/g, '"');
+                  if (exampleText && idx < 3) {
+                    usageHTML += `<p class="usage-example" style="margin: 0.3em 0 0.5em 1.5em; font-style: italic; padding: 0.5em; border-radius: 8px;">💬 "${exampleText}"</p>`;
+                  }
+                }
+              });
+            }
+          });
+        }
+      });
+      
+      usageHTML += `</div>`;
+    }
+    
+    content.innerHTML = usageHTML;
+    
+  } catch (error) {
+    console.error("Error fetching usage:", error);
+    content.innerHTML = `
+      <h2 class="usage-title" style="margin-top: 0;">${word}</h2>
+      <p class="usage-hindi" style="font-size: 1.1em; font-weight: 600; margin-bottom: 1.5em;">${hindi}</p>
+      <p class="usage-error" style="text-align: center;">❌ Unable to fetch usage examples.</p>
+      <p class="usage-error-msg" style="text-align: center; font-size: 0.9em;">The word might not be available in the dictionary or there's a network issue.</p>
+    `;
+  }
+}
+
+function closeUsageModal() {
+  const modal = document.getElementById("usage-modal");
+  modal.style.display = "none";
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById("usage-modal");
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeUsageModal();
+      }
+    });
+  }
+});
