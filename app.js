@@ -52,6 +52,9 @@ window.addEventListener("DOMContentLoaded", () => {
    PROGRESS SAVE & RESTORE
    ========================= */
 function saveProgress() {
+  // Only save if user has actually started (not at phrase 0)
+  if (!username || !selectedLevel) return;
+  
   const progress = {
     username: username,
     level: selectedLevel,
@@ -60,17 +63,24 @@ function saveProgress() {
     timestamp: Date.now()
   };
   localStorage.setItem('learnEnglishProgress', JSON.stringify(progress));
+  console.log('Progress saved:', progress);
 }
 
 function checkSavedProgress() {
   const saved = localStorage.getItem('learnEnglishProgress');
-  if (!saved) return;
+  console.log('Checking saved progress:', saved);
+  if (!saved) {
+    console.log('No saved progress found');
+    return;
+  }
   
   const progress = JSON.parse(saved);
+  console.log('Progress loaded:', progress);
   
   // Check if progress is less than 7 days old
   const daysSince = (Date.now() - progress.timestamp) / (1000 * 60 * 60 * 24);
   if (daysSince > 7) {
+    console.log('Progress expired (older than 7 days)');
     localStorage.removeItem('learnEnglishProgress');
     return;
   }
@@ -161,8 +171,17 @@ function checkSavedProgress() {
     }
   `;
   
-  welcomeScreen.insertBefore(style, welcomeScreen.firstChild);
-  welcomeScreen.insertBefore(resumeBanner, usernameField.parentElement);
+  // Insert style in head
+  document.head.appendChild(style);
+  
+  // Insert banner after the welcome subtitle
+  const subtitle = welcomeScreen.querySelector('.welcome-subtitle');
+  if (subtitle && subtitle.parentElement) {
+    subtitle.parentElement.insertBefore(resumeBanner, subtitle.nextSibling);
+  } else {
+    // Fallback: insert at the beginning of welcome screen
+    welcomeScreen.insertBefore(resumeBanner, welcomeScreen.children[2]);
+  }
 }
 
 async function resumeProgress() {
@@ -170,6 +189,7 @@ async function resumeProgress() {
   if (!saved) return;
   
   const progress = JSON.parse(saved);
+  console.log('Resuming progress:', progress);
   
   username = progress.username;
   selectedLevel = progress.level;
@@ -185,6 +205,23 @@ async function resumeProgress() {
   welcome.classList.add("rotate-out");
   setTimeout(() => {
     welcome.style.display = "none";
+    
+    // Clear any vocabulary content and restore phrase screen structure
+    phrase.innerHTML = `
+      <div id="loader" class="spinner" style="display:none;"></div>
+      <div id="hinglish-phrase" aria-live="polite">...</div>
+      <div id="english-translation" aria-live="polite"></div>
+      <div id="progress-container">
+        <div id="progress-text">Progress: 0 / 0</div>
+        <div id="progress-bar"></div>
+      </div>
+      <div class="controls">
+        <button onclick="revealTranslation()">Reveal</button>
+        <button onclick="nextPhrase()">Next</button>
+        <button onclick="exitApp()">Exit</button>
+      </div>
+    `;
+    
     phrase.style.display = "flex";
     phrase.classList.add("rotate-in");
     document.getElementById("loader").style.display = "block";
@@ -335,9 +372,6 @@ async function startTest(level) {
   selectedLevel = level;
   currentFileIndex = 0;
   index = 0;
-  
-  // Save initial progress
-  saveProgress();
 
   const welcome = document.getElementById("welcome-screen");
   const phrase = document.getElementById("phrase-screen");
@@ -345,6 +379,23 @@ async function startTest(level) {
   welcome.classList.add("rotate-out");
   setTimeout(() => {
     welcome.style.display = "none";
+    
+    // Clear any vocabulary content and restore phrase screen structure
+    phrase.innerHTML = `
+      <div id="loader" class="spinner" style="display:none;"></div>
+      <div id="hinglish-phrase" aria-live="polite">...</div>
+      <div id="english-translation" aria-live="polite"></div>
+      <div id="progress-container">
+        <div id="progress-text">Progress: 0 / 0</div>
+        <div id="progress-bar"></div>
+      </div>
+      <div class="controls">
+        <button onclick="revealTranslation()">Reveal</button>
+        <button onclick="nextPhrase()">Next</button>
+        <button onclick="exitApp()">Exit</button>
+      </div>
+    `;
+    
     phrase.style.display = "flex";
     phrase.classList.add("rotate-in");
     document.getElementById("loader").style.display = "block";
@@ -525,13 +576,13 @@ function nextPhrase() {
   if (!translationRevealed) return;
   index++;
   
-  // Save progress after each phrase
-  saveProgress();
-  
   if (index >= phrases.length) {
     setTimeout(celebrate, 400);
     return;
   }
+  
+  // Save progress after moving to next phrase
+  saveProgress();
   showPhrase();
 }
 
@@ -791,9 +842,33 @@ let vocabularyDatabase = null;
 // Track used words to prevent repetition
 let usedWords = new Set();
 
+// Load vocabulary progress from localStorage
+function loadVocabularyProgress() {
+  const saved = localStorage.getItem('vocabularyProgress');
+  if (saved) {
+    try {
+      const wordsArray = JSON.parse(saved);
+      usedWords = new Set(wordsArray);
+      console.log('Vocabulary progress loaded:', usedWords.size, 'words learned');
+    } catch (e) {
+      console.error('Error loading vocabulary progress:', e);
+    }
+  }
+}
+
+// Save vocabulary progress to localStorage
+function saveVocabularyProgress() {
+  const wordsArray = Array.from(usedWords);
+  localStorage.setItem('vocabularyProgress', JSON.stringify(wordsArray));
+  console.log('Vocabulary progress saved:', usedWords.size, 'words');
+}
+
 async function loadVocabulary() {
   const phraseScreen = document.getElementById("phrase-screen");
   const welcomeScreen = document.getElementById("welcome-screen");
+
+  // Load saved vocabulary progress
+  loadVocabularyProgress();
 
   // Add transition effect
   welcomeScreen.classList.add("rotate-out");
@@ -838,6 +913,9 @@ async function loadVocabulary() {
 
     // Mark these words as used
     selectedWords.forEach(word => usedWords.add(word.english));
+    
+    // Save vocabulary progress
+    saveVocabularyProgress();
 
     // Wait for transition to complete before showing vocabulary
     setTimeout(() => {
@@ -883,7 +961,7 @@ function showVocabulary(words) {
       `).join("")}
     </ul>
     <div class="vocab-controls" style="margin-top: 1em; display: flex; gap: 0.6em; justify-content: center; flex-wrap: wrap;">
-      <button id="new-words-btn" class="vocab-btn" style="padding: 0.8em 1.2em; font-size: 0.9em; flex: 1.3; min-width: 120px;">🔄 New Words</button>
+      <button id="new-words-btn" class="vocab-btn" style="padding: 0.8em 1.4em; font-size: 0.9em; flex: 1.5; min-width: 130px;">🔄 New Words</button>
       <button id="reset-progress-btn" class="vocab-btn" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 0.8em 1.2em; font-size: 0.9em; flex: 1; min-width: 100px;">🔄 Reset</button>
       <button class="vocab-btn" onclick="exitApp()" style="padding: 0.8em 1.2em; font-size: 0.9em; flex: 1; min-width: 100px;">🏠 Home</button>
     </div>
@@ -894,6 +972,8 @@ function showVocabulary(words) {
   document.getElementById("reset-progress-btn").addEventListener("click", () => {
     if (confirm("Reset your vocabulary progress? This will allow you to see all words again.")) {
       usedWords.clear();
+      localStorage.removeItem('vocabularyProgress');
+      console.log('Vocabulary progress reset');
       loadVocabulary();
     }
   });
