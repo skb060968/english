@@ -94,25 +94,36 @@ function checkSavedProgress() {
     usernameField.value = progress.username;
   }
   
-  // Create resume banner
+  // Hide welcome screen content (show only banner)
+  const welcomeContent = welcomeScreen.querySelectorAll('h2, p, label, input, h3, .difficulty-buttons, div[style*="margin"]');
+  welcomeContent.forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  // Make welcome screen scrollable if needed
+  welcomeScreen.style.overflow = 'auto';
+  welcomeScreen.style.justifyContent = 'center';
+  
+  // Create full-screen resume banner (first load)
   const resumeBanner = document.createElement('div');
   resumeBanner.id = 'resume-banner';
+  resumeBanner.className = 'full-screen-banner';
   resumeBanner.innerHTML = `
-    <div style="display: flex; align-items: center; justify-content: space-between; gap: 1em; flex-wrap: wrap;">
-      <div style="display: flex; align-items: center; gap: 0.8em; flex: 1; min-width: 200px;">
-        <span style="font-size: 1.8em;">📖</span>
-        <div>
-          <strong style="display: block; margin-bottom: 0.2em; font-size: 1.1em;">Continue Learning?</strong>
-          <span style="font-size: 0.9em; opacity: 0.9;">
-            ${capitalize(progress.level)} Level - File ${progress.fileIndex + 1} - Phrase ${progress.phraseIndex + 1}
-          </span>
-        </div>
+    <div style="text-align: center; max-width: 500px; margin: 0 auto;">
+      <div style="font-size: 4em; margin-bottom: 0.3em;">📖</div>
+      <h2 style="font-size: 2em; margin: 0.3em 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Welcome Back!</h2>
+      <p style="font-size: 1.1em; margin: 0.5em 0 0.3em 0; opacity: 0.9;">You have saved progress</p>
+      <div style="background: rgba(102, 126, 234, 0.1); padding: 1em; border-radius: 12px; margin: 1.5em 0; border: 2px solid rgba(102, 126, 234, 0.3);">
+        <p style="font-size: 1.2em; margin: 0; font-weight: 600;">
+          ${capitalize(progress.level)} Level<br>
+          <span style="font-size: 0.9em; opacity: 0.8;">File ${progress.fileIndex + 1} • Phrase ${progress.phraseIndex + 1}</span>
+        </p>
       </div>
-      <div style="display: flex; gap: 0.8em; flex-wrap: wrap;">
-        <button onclick="resumeProgress()" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; padding: 0.7em 1.5em; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95em; box-shadow: 0 4px 12px rgba(17, 153, 142, 0.3); transition: all 0.3s ease; white-space: nowrap;">
-          ▶️ Resume
+      <div style="display: flex; gap: 1em; justify-content: center; flex-wrap: wrap; margin-top: 2em;">
+        <button onclick="resumeProgress()" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; border: none; padding: 1em 2.5em; border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.1em; box-shadow: 0 6px 20px rgba(17, 153, 142, 0.4); transition: all 0.3s ease; white-space: nowrap;">
+          ▶️ Resume Learning
         </button>
-        <button onclick="clearProgress()" style="background: rgba(255, 107, 107, 0.2); color: #ff6b6b; border: 2px solid #ff6b6b; padding: 0.7em 1.5em; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.95em; transition: all 0.3s ease; white-space: nowrap;">
+        <button onclick="clearProgress()" style="background: transparent; color: #ff6b6b; border: 2px solid #ff6b6b; padding: 1em 2.5em; border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.1em; transition: all 0.3s ease; white-space: nowrap;">
           🔄 Start Fresh
         </button>
       </div>
@@ -122,18 +133,82 @@ function checkSavedProgress() {
   // Add styles
   const style = document.createElement('style');
   style.textContent = `
-    #resume-banner {
-      margin: 1.5em 0;
-      padding: 1.2em;
-      background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
-      border: 2px solid rgba(17, 153, 142, 0.3);
-      border-radius: 16px;
-      animation: slideIn 0.5s ease;
+    /* Full-screen banner (first load) */
+    .full-screen-banner {
+      width: 90%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2em 1.5em;
+      background: linear-gradient(135deg, #e8eaff 0%, #f0f2ff 100%);
+      border: 2px solid rgba(102, 126, 234, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
+      animation: fadeInUp 0.5s ease;
+      box-sizing: border-box;
     }
     
-    body.dark #resume-banner {
-      background: linear-gradient(135deg, rgba(17, 153, 142, 0.15) 0%, rgba(56, 239, 125, 0.15) 100%);
-      border-color: rgba(17, 153, 142, 0.4);
+    body.dark .full-screen-banner {
+      background: linear-gradient(135deg, rgba(40, 40, 60, 0.95) 0%, rgba(50, 50, 70, 0.95) 100%);
+      border-color: rgba(168, 192, 255, 0.3);
+      color: white;
+    }
+    
+    body.dark .full-screen-banner h2 {
+      background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    body.dark .full-screen-banner p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    body.dark .full-screen-banner > div > div {
+      background: rgba(168, 192, 255, 0.15) !important;
+      border-color: rgba(168, 192, 255, 0.3) !important;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .full-screen-banner {
+        width: 95%;
+        padding: 1.5em 1.2em;
+      }
+      
+      .full-screen-banner h2 {
+        font-size: 1.6em !important;
+      }
+      
+      .full-screen-banner button {
+        padding: 0.8em 1.8em !important;
+        font-size: 0.95em !important;
+      }
+    }
+    
+    /* Mini banner (after exit) */
+    #resume-banner:not(.full-screen-banner) {
+      margin: 1em 0 1.2em 0;
+      padding: 0.9em 1.1em;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+      border: 2px solid rgba(102, 126, 234, 0.25);
+      border-radius: 14px;
+      animation: slideIn 0.4s ease;
+    }
+    
+    body.dark #resume-banner:not(.full-screen-banner) {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+      border-color: rgba(102, 126, 234, 0.35);
     }
     
     @keyframes slideIn {
@@ -196,6 +271,12 @@ async function resumeProgress() {
   currentFileIndex = progress.fileIndex;
   index = progress.phraseIndex;
   
+  // Remove resume banner when resuming
+  const banner = document.getElementById('resume-banner');
+  if (banner) {
+    banner.remove();
+  }
+  
   unlockSpeech();
   await loadVoices();
   
@@ -234,8 +315,17 @@ function clearProgress() {
   const banner = document.getElementById('resume-banner');
   if (banner) {
     banner.style.animation = 'slideOut 0.3s ease';
-    setTimeout(() => banner.remove(), 300);
+    setTimeout(() => {
+      banner.remove();
+    }, 300);
   }
+  
+  // Show welcome screen content (in case it was hidden on first load)
+  const welcomeScreen = document.getElementById('welcome-screen');
+  const welcomeContent = welcomeScreen.querySelectorAll('h2, p, label, input, h3, .difficulty-buttons, div[style*="margin"]');
+  welcomeContent.forEach(el => {
+    el.style.display = '';
+  });
 }
 
 /* =========================
@@ -369,6 +459,29 @@ async function startTest(level) {
     return;
   }
 
+  // Check if there's saved progress
+  const saved = localStorage.getItem('learnEnglishProgress');
+  if (saved) {
+    const progress = JSON.parse(saved);
+    const isSameLevel = progress.level === level;
+    const confirmMsg = isSameLevel 
+      ? `You have saved progress at ${capitalize(progress.level)} Level, Phrase ${progress.phraseIndex + 1}.\n\nRestarting this level will erase your progress.\n\nDo you want to continue?`
+      : `You have saved progress at ${capitalize(progress.level)} Level, Phrase ${progress.phraseIndex + 1}.\n\nStarting a new level will erase this progress.\n\nDo you want to continue?`;
+    
+    if (!confirm(confirmMsg)) {
+      return; // User cancelled, don't start new test
+    }
+  }
+
+  // Remove resume banner when starting a new level
+  const banner = document.getElementById('resume-banner');
+  if (banner) {
+    banner.remove();
+  }
+  
+  // Clear saved progress when starting a new test (Start Fresh behavior)
+  localStorage.removeItem('learnEnglishProgress');
+  
   selectedLevel = level;
   currentFileIndex = 0;
   index = 0;
@@ -733,6 +846,56 @@ function exitApp() {
   welcomeScreen.style.display = "flex";
   void welcomeScreen.offsetWidth; // reflow for safe animation
   welcomeScreen.classList.add("rotate-in");
+
+  // Remove old resume banner
+  const oldBanner = document.getElementById('resume-banner');
+  if (oldBanner) {
+    oldBanner.remove();
+  }
+  
+  // Show all welcome content (don't hide it when exiting)
+  const welcomeContent = welcomeScreen.querySelectorAll('h2, p, label, input, h3, .difficulty-buttons, div[style*="margin"]');
+  welcomeContent.forEach(el => {
+    el.style.display = '';
+  });
+  
+  // Create a small resume banner at the top (not blocking)
+  const saved = localStorage.getItem('learnEnglishProgress');
+  if (saved) {
+    const progress = JSON.parse(saved);
+    const daysSince = (Date.now() - progress.timestamp) / (1000 * 60 * 60 * 24);
+    
+    if (daysSince <= 7) {
+      const miniResumeBanner = document.createElement('div');
+      miniResumeBanner.id = 'resume-banner';
+      miniResumeBanner.innerHTML = `
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 1em; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 0.8em; flex: 1; min-width: 180px;">
+            <span style="font-size: 1.8em;">📖</span>
+            <div style="flex: 1;">
+              <div style="font-size: 0.95em; font-weight: 700; text-align: center; margin-bottom: 0.2em;">SAVED PROGRESS</div>
+              <div style="font-size: 0.95em; font-weight: 600; text-align: center;">
+                ${capitalize(progress.level)} Level • Phrase ${progress.phraseIndex + 1}
+              </div>
+            </div>
+          </div>
+          <button onclick="resumeProgress()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 0.7em 1.5em; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 0.9em; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease; white-space: nowrap;">
+            ▶️ Resume
+          </button>
+        </div>
+      `;
+      
+      // Insert after the welcome subtitle (below heading)
+      const subtitle = welcomeScreen.querySelector('.welcome-subtitle');
+      if (subtitle) {
+        subtitle.parentElement.insertBefore(miniResumeBanner, subtitle.nextSibling);
+      } else {
+        // Fallback: insert after second child
+        const secondChild = welcomeScreen.children[1];
+        welcomeScreen.insertBefore(miniResumeBanner, secondChild.nextSibling);
+      }
+    }
+  }
 
   // Keep username so user can change level without re-entering name
   // usernameField.value remains unchanged
