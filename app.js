@@ -40,7 +40,119 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 1500);
 
   loadVoices();
+  
+  // Register service worker and listen for updates
+  registerServiceWorker();
 });
+
+/* =========================
+   SERVICE WORKER & UPDATE NOTIFICATION
+   ========================= */
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(registration => {
+        console.log('Service Worker registered');
+        
+        // Check for updates every 30 seconds when app is active
+        setInterval(() => {
+          registration.update();
+        }, 30000);
+        
+        // Listen for updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              // New version available
+              showUpdateNotification();
+            }
+          });
+        });
+      })
+      .catch(err => console.log('Service Worker registration failed:', err));
+    
+    // Listen for messages from service worker
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data.type === 'APP_UPDATED') {
+        showUpdateNotification();
+      }
+    });
+  }
+}
+
+function showUpdateNotification() {
+  // Create update banner if it doesn't exist
+  let banner = document.getElementById('update-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'update-banner';
+    banner.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 1em;">
+        <div style="display: flex; align-items: center; gap: 0.8em;">
+          <span style="font-size: 1.5em;">🎉</span>
+          <div>
+            <strong style="display: block; margin-bottom: 0.2em;">New Update Available!</strong>
+            <span style="font-size: 0.9em; opacity: 0.9;">Refresh to get the latest features and content</span>
+          </div>
+        </div>
+        <button onclick="reloadApp()" style="background: white; color: #667eea; border: none; padding: 0.6em 1.2em; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.95em; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+          Refresh Now
+        </button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+    
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+      #update-banner {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1em 1.5em;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        animation: slideDown 0.5s ease;
+      }
+      
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      #update-banner button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+      
+      @media (max-width: 600px) {
+        #update-banner {
+          padding: 0.8em 1em;
+          font-size: 0.9em;
+        }
+        #update-banner button {
+          padding: 0.5em 1em;
+          font-size: 0.85em;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
+function reloadApp() {
+  window.location.reload();
+}
 
 function toggleTheme() {
   const body = document.body;

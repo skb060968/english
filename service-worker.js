@@ -1,4 +1,4 @@
-const CACHE_NAME = "learn-english-v2";
+const CACHE_NAME = "learn-english-v3";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
@@ -20,6 +20,7 @@ self.addEventListener("install", (event) => {
       return cache.addAll(FILES_TO_CACHE);
     })
   );
+  // Skip waiting to activate new service worker immediately
   self.skipWaiting();
 });
 
@@ -36,7 +37,18 @@ self.addEventListener("activate", (event) => {
       )
     )
   );
+  // Take control of all pages immediately
   self.clients.claim();
+  
+  // Notify all clients about the update
+  self.clients.matchAll().then(clients => {
+    clients.forEach(client => {
+      client.postMessage({
+        type: 'APP_UPDATED',
+        version: CACHE_NAME
+      });
+    });
+  });
 });
 
 self.addEventListener("fetch", (event) => {
