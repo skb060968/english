@@ -382,10 +382,6 @@ input[type="text"]:focus {
 #hinglish-phrase {
   font-size: 3em;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   margin: 0.8em 0 0.6em 0;
   word-wrap: break-word;
   line-height: 1.3;
@@ -394,10 +390,6 @@ input[type="text"]:focus {
   background-color: rgba(102, 126, 234, 0.05);
 }
 body.dark #hinglish-phrase {
-  background: linear-gradient(135deg, #a8c0ff 0%, #c2e9fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   background-color: rgba(168, 192, 255, 0.05);
 }
 #english-translation {

@@ -619,7 +619,7 @@ function showPhrase() {
   }
   
   hinglish.innerHTML = `
-    ${displayText}
+    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${displayText}</span>
     <button onclick="replayCurrentPhrase()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;" title="Play audio">🔊</button>
   `;
   speak(displayText, language);
@@ -662,7 +662,7 @@ function revealTranslation() {
   
   english.innerHTML = `
     ${translationText}
-    <button onclick="replayTranslation()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle;" title="Play audio">🔊</button>
+    <button onclick="replayTranslation()" style="margin-left: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4); transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; position: relative; overflow: visible;" title="Play audio"><span style="position: relative; z-index: 2;">🔊</span></button>
   `;
   english.style.display = "block";
   void english.offsetWidth;
