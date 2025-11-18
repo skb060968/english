@@ -1054,12 +1054,8 @@ async function loadVocabulary() {
       console.log("Vocabulary database loaded:", vocabularyDatabase);
     }
 
-    // Combine all difficulty levels
-    const allWords = [
-      ...vocabularyDatabase.beginner,
-      ...vocabularyDatabase.intermediate,
-      ...vocabularyDatabase.advanced
-    ];
+    // Use all words from the flat array
+    const allWords = vocabularyDatabase;
 
     // Filter out already used words
     const availableWords = allWords.filter(word => !usedWords.has(word.english));
@@ -1099,9 +1095,7 @@ async function loadVocabulary() {
 function showVocabulary(words) {
   const phraseScreen = document.getElementById("phrase-screen");
   const totalLearned = usedWords.size;
-  const totalAvailable = vocabularyDatabase.beginner.length + 
-                         vocabularyDatabase.intermediate.length + 
-                         vocabularyDatabase.advanced.length;
+  const totalAvailable = vocabularyDatabase.length;
   
   phraseScreen.innerHTML = `
     <h2 style="font-size: 1.6em; margin-bottom: 0.2em; margin-top: 0;">📘 Vocabulary Builder</h2>
