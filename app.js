@@ -1046,7 +1046,7 @@ async function loadVocabulary() {
   try {
     // Load vocabulary database if not already loaded
     if (!vocabularyDatabase) {
-      const response = await fetch("vocabulary-data.json");
+      const response = await fetch("vocabulary-curated.json");
       if (!response.ok) {
         throw new Error(`Failed to load vocabulary: ${response.status}`);
       }
@@ -1178,70 +1178,24 @@ async function showUsage(word, hindi) {
     
     const data = await response.json();
     
-    // Check if word was found (API returns array of strings if not found)
-    if (!Array.isArray(data) || data.length === 0 || typeof data[0] === 'string') {
+    // Check if word was found
+    if (!Array.isArray(collegiateData) || collegiateData.length === 0 || typeof collegiateData[0] === 'string') {
       throw new Error("Word not found");
     }
     
-    const entry = data[0];
-    
-    // Extract definitions and examples
+    // Start building HTML
     let usageHTML = `
       <h2 class="usage-title" style="margin-top: 0;">${word}</h2>
       <p class="usage-hindi" style="font-size: 1.1em; font-weight: 600; margin-bottom: 1.5em;">${hindi}</p>
     `;
     
-    // Add pronunciation if available
-    if (entry.hwi && entry.hwi.prs && entry.hwi.prs[0]) {
-      const pronText = entry.hwi.prs[0].mw || entry.hwi.prs[0].ipa || '';
-      if (pronText) {
-        usageHTML += `<p class="usage-phonetic" style="font-style: italic; margin-bottom: 1em;">\\${pronText}\\</p>`;
-      }
+    // Show Learner's Dictionary first (if available)
+    if (learnersData && Array.isArray(learnersData) && learnersData.length > 0 && typeof learnersData[0] !== 'string') {
+      usageHTML += formatDictionaryEntry(learnersData[0], '📘 Simple Definition', '#e8f5e9', '#4caf50');
     }
     
-    // Add definitions with examples
-    if (entry.shortdef && entry.shortdef.length > 0) {
-      // Get part of speech
-      const partOfSpeech = entry.fl || '';
-      
-      usageHTML += `<div style="margin-bottom: 1.5em;">`;
-      if (partOfSpeech) {
-        usageHTML += `<h3 class="usage-pos" style="font-size: 1em; margin-bottom: 0.5em;">${partOfSpeech}</h3>`;
-      }
-      
-      // Show up to 3 definitions
-      entry.shortdef.slice(0, 3).forEach((def, idx) => {
-        usageHTML += `<p class="usage-definition" style="margin: 0.5em 0;"><strong>${idx + 1}.</strong> ${def}</p>`;
-        
-        // Try to find examples for this definition
-        if (entry.def && entry.def[0] && entry.def[0].sseq) {
-          const senses = entry.def[0].sseq.flat(2);
-          senses.forEach(sense => {
-            if (sense.dt) {
-              sense.dt.forEach(item => {
-                if (item[0] === 'vis' && item[1] && item[1][0]) {
-                  const exampleText = item[1][0].t
-                    .replace(/{it}/g, '')
-                    .replace(/{\/it}/g, '')
-                    .replace(/{bc}/g, '')
-                    .replace(/{wi}/g, '')
-                    .replace(/{\/wi}/g, '')
-                    .replace(/{phrase}/g, '')
-                    .replace(/{\/phrase}/g, '')
-                    .replace(/{ldquo}/g, '"')
-                    .replace(/{rdquo}/g, '"');
-                  if (exampleText && idx < 3) {
-                    usageHTML += `<p class="usage-example" style="margin: 0.3em 0 0.5em 1.5em; font-style: italic; padding: 0.5em; border-radius: 8px;">💬 "${exampleText}"</p>`;
-                  }
-                }
-              });
-            }
-          });
-        }
-      });
-      
-      usageHTML += `</div>`;
-    }
+    // Show Collegiate Dictionary
+    usageHTML += formatDictionaryEntry(collegiateData[0], learnersData ? '📗 Advanced Definition' : '', '#e3f2fd', '#2196f3');
     
     content.innerHTML = usageHTML;
     
@@ -1250,10 +1204,78 @@ async function showUsage(word, hindi) {
     content.innerHTML = `
       <h2 class="usage-title" style="margin-top: 0;">${word}</h2>
       <p class="usage-hindi" style="font-size: 1.1em; font-weight: 600; margin-bottom: 1.5em;">${hindi}</p>
-      <p class="usage-error" style="text-align: center;">❌ Unable to fetch usage examples.</p>
-      <p class="usage-error-msg" style="text-align: center; font-size: 0.9em;">The word might not be available in the dictionary or there's a network issue.</p>
+      <p class="usage-error" style="text-align: center;">❌ Unable to fetch definitions.</p>
+      <p class="usage-error-msg" style="text-align: center; font-size: 0.9em;">The word might not be available or there's a network issue.</p>
     `;
   }
+}
+
+// Helper function to format dictionary entry
+function formatDictionaryEntry(entry, title, bgColor, borderColor) {
+  let html = '';
+  
+  // Add section title if provided
+  if (title) {
+    html += `<div style="background: ${bgColor}; border-left: 4px solid ${borderColor}; padding: 1em; border-radius: 8px; margin: 1em 0;">`;
+    html += `<h3 style="margin: 0 0 0.5em 0; color: ${borderColor}; font-size: 1.1em;">${title}</h3>`;
+  } else {
+    html += `<div style="margin-bottom: 1.5em;">`;
+  }
+  
+  const entry_copy = entry;
+    
+  // Add pronunciation if available
+  if (entry_copy.hwi && entry_copy.hwi.prs && entry_copy.hwi.prs[0]) {
+    const pronText = entry_copy.hwi.prs[0].mw || entry_copy.hwi.prs[0].ipa || '';
+    if (pronText) {
+      html += `<p class="usage-phonetic" style="font-style: italic; margin-bottom: 0.8em; opacity: 0.8;">\\${pronText}\\</p>`;
+    }
+  }
+  
+  // Add part of speech
+  const partOfSpeech = entry_copy.fl || '';
+  if (partOfSpeech) {
+    html += `<p class="usage-pos" style="font-size: 0.9em; margin-bottom: 0.5em; font-weight: 600; opacity: 0.7;">${partOfSpeech}</p>`;
+  }
+  
+  // Add definitions with examples
+  if (entry_copy.shortdef && entry_copy.shortdef.length > 0) {
+    // Show up to 2 definitions (keep it concise)
+    entry_copy.shortdef.slice(0, 2).forEach((def, idx) => {
+      html += `<p class="usage-definition" style="margin: 0.5em 0;"><strong>${idx + 1}.</strong> ${def}</p>`;
+      
+      // Try to find examples for this definition
+      if (entry_copy.def && entry_copy.def[0] && entry_copy.def[0].sseq) {
+        const senses = entry_copy.def[0].sseq.flat(2);
+        let exampleCount = 0;
+        senses.forEach(sense => {
+          if (sense.dt && exampleCount < 1) { // Only 1 example per definition
+            sense.dt.forEach(item => {
+              if (item[0] === 'vis' && item[1] && item[1][0] && exampleCount < 1) {
+                const exampleText = item[1][0].t
+                  .replace(/{it}/g, '')
+                  .replace(/{\/it}/g, '')
+                  .replace(/{bc}/g, '')
+                  .replace(/{wi}/g, '')
+                  .replace(/{\/wi}/g, '')
+                  .replace(/{phrase}/g, '')
+                  .replace(/{\/phrase}/g, '')
+                  .replace(/{ldquo}/g, '"')
+                  .replace(/{rdquo}/g, '"');
+                if (exampleText) {
+                  html += `<p class="usage-example" style="margin: 0.3em 0 0.5em 1em; font-style: italic; font-size: 0.9em; opacity: 0.8;">💬 "${exampleText}"</p>`;
+                  exampleCount++;
+                }
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+  
+  html += `</div>`;
+  return html;
 }
 
 function closeUsageModal() {

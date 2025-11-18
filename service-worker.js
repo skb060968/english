@@ -1,4 +1,4 @@
-const CACHE_NAME = "learn-english-v7";
+const CACHE_NAME = "learn-english-v8";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
@@ -10,7 +10,8 @@ const FILES_TO_CACHE = [
   "./sounds/APPLAUSE.WAV",
   "./easy1.json",
   "./medium1.json",
-  "./advanced1.json"
+  "./advanced1.json",
+  "./vocabulary-curated.json"
 ];
 
 self.addEventListener("install", (event) => {
