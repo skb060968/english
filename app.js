@@ -1173,7 +1173,7 @@ async function showUsage(word, hindi) {
     const data = await response.json();
     
     // Check if word was found
-    if (!Array.isArray(collegiateData) || collegiateData.length === 0 || typeof collegiateData[0] === 'string') {
+    if (!Array.isArray(data) || data.length === 0 || typeof data[0] === 'string') {
       throw new Error("Word not found");
     }
     
@@ -1183,13 +1183,8 @@ async function showUsage(word, hindi) {
       <p class="usage-hindi" style="font-size: 1.1em; font-weight: 600; margin-bottom: 1.5em;">${hindi}</p>
     `;
     
-    // Show Learner's Dictionary first (if available)
-    if (learnersData && Array.isArray(learnersData) && learnersData.length > 0 && typeof learnersData[0] !== 'string') {
-      usageHTML += formatDictionaryEntry(learnersData[0], '📘 Simple Definition', '#e8f5e9', '#4caf50');
-    }
-    
-    // Show Collegiate Dictionary
-    usageHTML += formatDictionaryEntry(collegiateData[0], learnersData ? '📗 Advanced Definition' : '', '#e3f2fd', '#2196f3');
+    // Show dictionary entry
+    usageHTML += formatDictionaryEntry(data[0], '', '#e3f2fd', '#2196f3');
     
     content.innerHTML = usageHTML;
     
