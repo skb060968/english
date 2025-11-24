@@ -1,4 +1,4 @@
-/* ==============================
+﻿/* ==============================
    Learn English App – Simplified (No Progress Save)
    ============================== */
 
@@ -455,7 +455,7 @@ async function startTest(level) {
 
   username = document.getElementById("username").value.trim();
   if (!username) {
-    alert("Please enter your name to begin.");
+    await showAlertModal("Please enter your name to begin.", "👤");
     return;
   }
 
@@ -468,7 +468,9 @@ async function startTest(level) {
       ? `You have saved progress at ${capitalize(progress.level)} Level, Phrase ${progress.phraseIndex + 1}.\n\nRestarting this level will erase your progress.\n\nDo you want to continue?`
       : `You have saved progress at ${capitalize(progress.level)} Level, Phrase ${progress.phraseIndex + 1}.\n\nStarting a new level will erase this progress.\n\nDo you want to continue?`;
     
-    if (!confirm(confirmMsg)) {
+    // Show custom confirmation modal instead of browser confirm
+    const userConfirmed = await showConfirmModal(confirmMsg);
+    if (!userConfirmed) {
       return; // User cancelled, don't start new test
     }
   }
@@ -552,7 +554,7 @@ function loadPhrases(fileName) {
       document.getElementById("loader").style.display = "none";
       
       // Better error message
-      const errorMsg = `Could not load phrases from "${fileName}".
+      const errorMsg = `Could not load phrases.
       
 Possible solutions:
 1. Make sure you're opening the app through a web server (not file://)
@@ -562,7 +564,7 @@ Possible solutions:
 
 Error: ${err.message}`;
       
-      alert(errorMsg);
+      showAlertModal(errorMsg, "❌");
       
       // Return to welcome screen
       document.getElementById("phrase-screen").style.display = "none";
@@ -766,7 +768,7 @@ function moveToNextFile() {
     selectedLevel = levelOrder[currentLevelIndex + 1];
     currentFileIndex = 0;
   } else {
-    alert("You’ve already completed all available levels!");
+    showAlertModal("You've already completed all available levels!", "");
     moveBtn.style.display = "none";
     // Clear progress when all levels completed
     localStorage.removeItem('learnEnglishProgress');
@@ -1085,7 +1087,7 @@ async function loadVocabulary() {
 
   } catch (err) {
     console.error("Error loading vocabulary:", err);
-    alert("Unable to load vocabulary. Please try again.");
+    showAlertModal("Unable to load vocabulary. Please try again.", "");
     welcomeScreen.style.display = "flex";
     phraseScreen.style.display = "none";
   }
@@ -1126,8 +1128,9 @@ function showVocabulary(words) {
 
   // Rebind buttons
   document.getElementById("new-words-btn").addEventListener("click", loadVocabulary);
-  document.getElementById("reset-progress-btn").addEventListener("click", () => {
-    if (confirm("Reset your vocabulary progress? This will allow you to see all words again.")) {
+  document.getElementById("reset-progress-btn").addEventListener("click", async () => {
+    const confirmed = await showConfirmModal("Reset your vocabulary progress? This will allow you to see all words again.");
+    if (confirmed) {
       usedWords.clear();
       localStorage.removeItem('vocabularyProgress');
       console.log('Vocabulary progress reset');
@@ -1283,3 +1286,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+/* ==========================
+   Custom Confirmation Modal
+   ========================== */
+function showConfirmModal(message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('confirm-modal');
+    const messageEl = document.getElementById('confirm-message');
+    const yesBtn = document.getElementById('confirm-yes-btn');
+    const noBtn = document.getElementById('confirm-no-btn');
+    
+    // Set message
+    messageEl.textContent = message;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    
+    // Handle Yes button
+    const handleYes = () => {
+      modal.style.display = 'none';
+      cleanup();
+      resolve(true);
+    };
+    
+    // Handle No button
+    const handleNo = () => {
+      modal.style.display = 'none';
+      cleanup();
+      resolve(false);
+    };
+    
+    // Cleanup listeners
+    const cleanup = () => {
+      yesBtn.removeEventListener('click', handleYes);
+      noBtn.removeEventListener('click', handleNo);
+    };
+    
+    // Add event listeners
+    yesBtn.addEventListener('click', handleYes);
+    noBtn.addEventListener('click', handleNo);
+  });
+}
+
+/* ==========================
+   Custom Alert Modal
+   ========================== */
+function showAlertModal(message, icon = 'ℹ️') {
+  return new Promise((resolve) => {
+    const modal = document.getElementById('alert-modal');
+    const messageEl = document.getElementById('alert-message');
+    const iconEl = document.getElementById('alert-icon');
+    const okBtn = document.getElementById('alert-ok-btn');
+    
+    // Set message and icon
+    messageEl.textContent = message;
+    iconEl.textContent = icon;
+    
+    // Show modal
+    modal.style.display = 'flex';
+    
+    // Handle OK button
+    const handleOk = () => {
+      modal.style.display = 'none';
+      cleanup();
+      resolve();
+    };
+    
+    // Cleanup listeners
+    const cleanup = () => {
+      okBtn.removeEventListener('click', handleOk);
+    };
+    
+    // Add event listener
+    okBtn.addEventListener('click', handleOk);
+  });
+}
+
+
+
