@@ -455,7 +455,7 @@ async function startTest(level) {
 
   username = document.getElementById("username").value.trim();
   if (!username) {
-    await showAlertModal("Please enter your name to begin.", "👤");
+    await showAlertModal("Please enter your name to begin.", "👤", "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)");
     return;
   }
 
@@ -564,7 +564,7 @@ Possible solutions:
 
 Error: ${err.message}`;
       
-      showAlertModal(errorMsg, "❌");
+      showAlertModal(errorMsg, "❌", "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)");
       
       // Return to welcome screen
       document.getElementById("phrase-screen").style.display = "none";
@@ -768,7 +768,7 @@ function moveToNextFile() {
     selectedLevel = levelOrder[currentLevelIndex + 1];
     currentFileIndex = 0;
   } else {
-    showAlertModal("You've already completed all available levels!", "");
+    showAlertModal("You've already completed all available levels!", "🏆", "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)");
     moveBtn.style.display = "none";
     // Clear progress when all levels completed
     localStorage.removeItem('learnEnglishProgress');
@@ -1087,7 +1087,7 @@ async function loadVocabulary() {
 
   } catch (err) {
     console.error("Error loading vocabulary:", err);
-    showAlertModal("Unable to load vocabulary. Please try again.", "");
+    showAlertModal("Unable to load vocabulary. Please try again.", "❌", "linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%)");
     welcomeScreen.style.display = "flex";
     phraseScreen.style.display = "none";
   }
@@ -1333,16 +1333,25 @@ function showConfirmModal(message) {
 /* ==========================
    Custom Alert Modal
    ========================== */
-function showAlertModal(message, icon = 'ℹ️') {
+function showAlertModal(message, icon = 'ℹ️', iconColor = null) {
   return new Promise((resolve) => {
     const modal = document.getElementById('alert-modal');
     const messageEl = document.getElementById('alert-message');
     const iconEl = document.getElementById('alert-icon');
+    const iconContainer = document.getElementById('alert-icon-container');
     const okBtn = document.getElementById('alert-ok-btn');
     
     // Set message and icon
     messageEl.textContent = message;
     iconEl.textContent = icon;
+    
+    // Set icon color if provided
+    if (iconColor) {
+      iconContainer.style.background = iconColor;
+    } else {
+      // Reset to default gradient
+      iconContainer.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    }
     
     // Show modal
     modal.style.display = 'flex';

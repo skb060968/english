@@ -71,23 +71,25 @@
 
   <!-- ⚠️ Confirmation Modal -->
   <div id="confirm-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1001; justify-content: center; align-items: center;">
-    <div style="background: white; border-radius: 20px; padding: 2em; max-width: 450px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center;">
+    <div class="modal-content" style="background: linear-gradient(135deg, #e8eaff 0%, #f0f2ff 100%); border-radius: 20px; padding: 2em; max-width: 450px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
       <div style="font-size: 3em; margin-bottom: 0.3em;">⚠️</div>
       <h2 id="confirm-title" style="margin: 0.3em 0; color: #667eea;">Confirm Action</h2>
       <p id="confirm-message" style="font-size: 1em; line-height: 1.6; margin: 1em 0; color: #333;"></p>
       <div style="display: flex; gap: 1em; justify-content: center; margin-top: 1.5em;">
         <button id="confirm-yes-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 0.8em 2em; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 1em; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">Yes, Continue</button>
-        <button id="confirm-no-btn" style="background: transparent; color: #ff6b6b; border: 2px solid #ff6b6b; padding: 0.8em 2em; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 1em;">Cancel</button>
+        <button id="confirm-no-btn" style="background: white; color: #ff6b6b; border: 2px solid #ff6b6b; padding: 0.8em 2em; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 1em;">Cancel</button>
       </div>
     </div>
   </div>
 
   <!-- ℹ️ Alert Modal -->
   <div id="alert-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1001; justify-content: center; align-items: center;">
-    <div style="background: white; border-radius: 20px; padding: 2em; max-width: 450px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center;">
-      <div id="alert-icon" style="font-size: 3em; margin-bottom: 0.3em;">ℹ️</div>
+    <div class="modal-content" style="background: linear-gradient(135deg, #e8eaff 0%, #f0f2ff 100%); border-radius: 20px; padding: 2em; max-width: 450px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center; border: 1px solid rgba(102, 126, 234, 0.2);">
+      <div id="alert-icon-container" style="width: 80px; height: 80px; margin: 0 auto 1em auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div id="alert-icon" style="font-size: 2.5em; color: white;"></div>
+      </div>
       <h2 id="alert-title" style="margin: 0.3em 0; color: #667eea;">Notice</h2>
-      <p id="alert-message" style="font-size: 1em; line-height: 1.6; margin: 1em 0; color: #333; white-space: pre-line;"></p>
+      <p id="alert-message" style="font-size: 1em; line-height: 1.6; margin: 1em 0; color: #1a1a1a; font-weight: 500; white-space: pre-line;"></p>
       <div style="display: flex; justify-content: center; margin-top: 1.5em;">
         <button id="alert-ok-btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 0.8em 2.5em; border-radius: 50px; font-weight: 600; cursor: pointer; font-size: 1em; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">OK</button>
       </div>
